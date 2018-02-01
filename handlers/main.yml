@@ -1,33 +1,12 @@
 ---
 # handlers file for clamav
-- name: restart clamav agent
+- name: restart software
   service:
-    name: clamav-agent
+    name: "{{ item }}"
     state: restarted
+  with_items:
+    - "{{ clamav_services[ansible_distribution ~ '-' ~ ansible_distribution_major_version]
+      | default(clamav_services[ansible_distribution]
+      | default(clamav_services['default'] )) }}"
   when:
     - ansible_virtualization_type != "docker"
-
-- name: restart clamav server
-  service:
-    name: clamav-server
-    state: restarted
-  when:
-    - ansible_virtualization_type != "docker"
-
-- name: create selinux mod
-  command: checkmodule -M -m -o /etc/clamav/my-clamavserver.mod /etc/clamav/my-clamavserver.te
-
-- name: create selinux pp
-  command: semodule_package -o /etc/clamav/my-clamavserver.pp -m /etc/clamav/my-clamavserver.mod
-
-- name: load selinux pp
-  command: semodule -i /etc/clamav/my-clamavserver.pp
-
-- name: import clamav schema
-  mysql_db:
-    state: import
-    name: clamav
-    target: /usr/share/doc/clamav-server-{{ clamav_server_type}}-3.4.6/create.sql.gz
-    login_host: "{{ clamav_server_database_host }}"
-    login_user: "{{ clamav_server_database_user }}"
-    login_password: "{{ clamav_server_database_pass }}"

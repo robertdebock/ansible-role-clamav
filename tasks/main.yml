@@ -17,6 +17,13 @@
     - ansible_selinux.status is defined
     - ansible_selinux.status == "enabled"
 
+- name: configure software
+  template:
+    src: templates/scan.conf.j2
+    dest: /etc/clamd.d/scan.conf
+  notify:
+    - restart software
+
 - name: start and enable software
   service:
     name: "{{ item }}"
