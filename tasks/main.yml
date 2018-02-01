@@ -1,0 +1,30 @@
+---
+# tasks file for clamav
+- name: install software
+  package:
+    name: "{{ item }}"
+  with_items:
+    - "{{ clamav_packages[ansible_distribution ~ '-' ~ ansible_distribution_major_version]
+      | default(clamav_packages[ansible_distribution]
+      | default(clamav_packages['default'] )) }}"
+
+- name: allowing system virus scanning
+  seboolean:
+    name: antivirus_can_scan_system
+    state: yes
+    persistent: yes
+  when:
+    - ansible_selinux.status is defined
+    - ansible_selinux.status == "enabled"
+
+- name: start and enable software
+  service:
+    name: "{{ item }}"
+    state: started
+    enabled: yes
+  with_items:
+    - "{{ clamav_services[ansible_distribution ~ '-' ~ ansible_distribution_major_version]
+      | default(clamav_services[ansible_distribution]
+      | default(clamav_services['default'] )) }}"
+  when:
+    - ansible_virtualization_type != "docker"

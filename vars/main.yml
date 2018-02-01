@@ -1,0 +1,33 @@
+---
+# vars file for clamav
+clamav_packages:
+  Alpine:
+    - clamav-daemon
+  Archlinux:
+    - clamav
+  CentOS-6:
+    - clamav
+    - clamav-scanner
+    - clamav-update
+  CentOS-7:
+    - clamav
+    - clamav-scanner
+    - clamav-scanner-systemd
+    - clamav-update
+  Debian:
+    - clamav
+    - clamav-daemon
+  Fedora:
+    - clamav
+    - clamav-scanner
+    - clamav-scanner-systemd
+    - clamav-update
+  openSUSE Leap:
+    - clamav
+  Ubuntu:
+    - clamav
+    - clamav-daemon
+
+clamav_services:
+  default:
+    - clamav
