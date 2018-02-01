@@ -29,5 +29,7 @@ clamav_packages:
     - clamav-daemon
 
 clamav_services:
+  CentOS-7:
+    - clamd@scan
   default:
     - clamav
