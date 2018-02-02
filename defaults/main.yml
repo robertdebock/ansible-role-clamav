@@ -1,2 +1,12 @@
 ---
 # defaults file for clamav
+clamav_tcpsocket: 10025
+clamav_tcpaddr: 127.0.0.1
+
+clamav_configuration:
+  - regexp: '^Example'
+    line: '#Example'
+  - regexp: '^#TCPSocket'
+    line: 'TCPSocket {{ clamav_tcpsocket }}'
+  - regexp: '^TCPAddr'
+    line: 'TCPAddr {{ clamav_tcpaddr }}'

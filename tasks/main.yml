@@ -18,15 +18,27 @@
     - ansible_selinux.status == "enabled"
 
 - name: configure software
-  template:
-    src: templates/scan.conf.j2
-    dest: "{{ item }}"
-  notify:
-    - restart software
-  with_items:
-    - "{{ clamav_config[ansible_distribution ~ '-' ~ ansible_distribution_major_version]
+  lineinfile:
+    dest: "{{ clamav_config[ansible_distribution ~ '-' ~ ansible_distribution_major_version]
       | default(clamav_config[ansible_distribution]
       | default(clamav_config['default'] )) }}"
+    regexp: item.regexp
+    line: item.line
+  with_items:
+    - "{{ clamav_configuration }}"
+  notify:
+    - restart software
+
+# - name: configure software
+#   template:
+#     src: templates/scan.conf.j2
+#     dest: "{{ item }}"
+#   notify:
+#     - restart software
+#   with_items:
+#     - "{{ clamav_config[ansible_distribution ~ '-' ~ ansible_distribution_major_version]
+#       | default(clamav_config[ansible_distribution]
+#       | default(clamav_config['default'] )) }}"
 
 - name: start and enable software
   service:
