@@ -24,9 +24,9 @@
       | default(clamav_config['default'] )) }}"
     regexp: item.regexp
     line: item.line
-    state: item.state | default(present)
+    state: item.state
   with_items:
-    - "{{ clamav_configuration }}"
+    - "{{ clamav_configuration | default([])}}"
   notify:
     - restart software
 
