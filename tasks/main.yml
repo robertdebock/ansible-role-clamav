@@ -20,9 +20,13 @@
 - name: configure software
   template:
     src: templates/scan.conf.j2
-    dest: /etc/clamd.d/scan.conf
+    dest: "{{ item }}"
   notify:
     - restart software
+  with_items:
+    - "{{ clamav_config[ansible_distribution ~ '-' ~ ansible_distribution_major_version]
+      | default(clamav_config[ansible_distribution]
+      | default(clamav_config['default'] )) }}"
 
 - name: start and enable software
   service:

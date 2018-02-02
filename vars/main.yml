@@ -28,6 +28,14 @@ clamav_packages:
     - clamav
     - clamav-daemon
 
+clamav_config:
+  Alpine: /etc/clamav/clamd.conf
+  Archlinux: /etc/clamav/clamd.conf
+  Debian: /etc/clamav/clamd.conf
+  default: /etc/clamd.d/scan.conf
+  openSUSE Leap: /etc/clamd.conf
+  Ubuntu: /etc/clamav/clamd.conf
+
 clamav_services:
   CentOS-7:
     - clamd@scan
