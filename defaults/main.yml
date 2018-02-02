@@ -10,7 +10,5 @@ clamav_can_scan_system: yes
 clamav_configuration:
   - regexp: '^Example'
     state: absent
-  - regexp: '^#TCPSocket'
-    line: 'TCPSocket 10025'
-  - regexp: '^TCPAddr'
-    line: 'TCPAddr 127.0.0.1'
+  - line: 'TCPSocket 10025'
+  - line: 'TCPAddr 127.0.0.1'
