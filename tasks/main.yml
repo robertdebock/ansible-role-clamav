@@ -19,11 +19,12 @@
 
 - name: configure software
   lineinfile:
-    dest: "{{ clamav_config[ansible_distribution ~ '-' ~ ansible_distribution_major_version]
+    path: "{{ clamav_config[ansible_distribution ~ '-' ~ ansible_distribution_major_version]
       | default(clamav_config[ansible_distribution]
       | default(clamav_config['default'] )) }}"
     regexp: item.regexp
     line: item.line
+    state: item.state | default(present)
   with_items:
     - "{{ clamav_configuration }}"
   notify:

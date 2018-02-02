@@ -1,12 +1,16 @@
 ---
 # defaults file for clamav
-clamav_tcpsocket: 10025
-clamav_tcpaddr: 127.0.0.1
+# SELinux has to be configured to allow scanning. Set clamav_can_scan_system to
+# either "yes" or "no". Only has effect on systems that support SELinux.
+clamav_can_scan_system: yes
 
+# Configure any parameter using "regexp" and "line". The parameter "regexp"
+# contains the line that needs to be replaced. The replacement is stored in
+# "line".
 clamav_configuration:
   - regexp: '^Example'
-    line: '#Example'
+    state: absent
   - regexp: '^#TCPSocket'
-    line: 'TCPSocket {{ clamav_tcpsocket }}'
+    line: 'TCPSocket 10025'
   - regexp: '^TCPAddr'
-    line: 'TCPAddr {{ clamav_tcpaddr }}'
+    line: 'TCPAddr 127.0.0.1'
