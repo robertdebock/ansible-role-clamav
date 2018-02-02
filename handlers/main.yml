@@ -10,3 +10,12 @@
       | default(clamav_services['default'] )) }}"
   when:
     - ansible_virtualization_type != "docker"
+
+- name: create selinux mod
+  command: checkmodule -M -m -o /etc/my-clamd.mod /etc/my-clamd.te
+
+- name: create selinux pp
+  command: semodule_package -o /etc/my-clamd.pp -m /etc/my-clamd.mod
+
+- name: load selinux pp
+  command: semodule -i /etc/my-clamd.pp

@@ -26,6 +26,32 @@
     - ansible_selinux.status is defined
     - ansible_selinux.status == "enabled"
 
+- name: install required selinux software
+  package:
+    name: "{{ item }}"
+  with_items:
+    - checkpolicy
+    - policycoreutils-python
+    - policycoreutils
+  when:
+    - ansible_selinux.status is defined
+    - ansible_selinux.status == "enabled"
+
+- name: place selinux type enforcement
+  copy:
+    src: files/my-clamd.te
+    dest: /etc/my-clamd.te
+  notify:
+    - create selinux mod
+    - create selinux pp
+    - load selinux pp
+  when:
+    - ansible_selinux.status is defined
+    - ansible_selinux.status == "enabled"
+
+- name: flush handlers
+  meta: flush_handlers
+
 - name: configure software
   lineinfile:
     dest: "{{ clamav_config[ansible_distribution ~ '-' ~ ansible_distribution_major_version]
