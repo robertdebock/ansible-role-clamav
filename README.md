@@ -8,12 +8,14 @@ Provides ClamAV for your system.
 Requirements
 ------------
 
-Access to a repository containing packages, likely on the internet.
+- Access to a repository containing packages, likely on the internet.
+- The repository EPEL (for CentOS/RHEL systems). This dependency is managed by an explicit reference to `robertdebock.epel` in meta/main.yml.
 
 Role Variables
 --------------
 
-None known
+- clamav_tcpsocket: 10025
+- clamav_tcpaddr: 127.0.0.1
 
 Dependencies
 ------------
@@ -33,6 +35,8 @@ Example Playbook
 
   roles:
     - role: robertdebock.clamav
+      clamav_tcpsocket: 10025
+      clamav_tcpaddr: 127.0.0.1
 ```
 
 Install this role using `galaxy install robertdebock.clamav`.
