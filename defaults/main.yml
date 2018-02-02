@@ -12,7 +12,5 @@ clamav_configuration:
     state: absent
   - regexp: '^#TCPSocket'
     line: 'TCPSocket 10025'
-    state: present
   - regexp: '^TCPAddr'
     line: 'TCPAddr 127.0.0.1'
-    state: present
