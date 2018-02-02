@@ -31,6 +31,7 @@ clamav_packages:
 clamav_config:
   Alpine: /etc/clamav/clamd.conf
   Archlinux: /etc/clamav/clamd.conf
+  CentOS-6: /etc/clamd.conf
   Debian: /etc/clamav/clamd.conf
   default: /etc/clamd.d/scan.conf
   openSUSE Leap: /etc/clamd.conf
