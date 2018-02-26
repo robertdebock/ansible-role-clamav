@@ -1,6 +1,6 @@
 ---
 # handlers file for clamav
-- name: restart software
+- name: restart clamav
   service:
     name: "{{ item }}"
     state: restarted
