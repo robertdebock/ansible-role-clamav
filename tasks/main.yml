@@ -52,6 +52,13 @@
 - name: flush handlers
   meta: flush_handlers
 
+- name: ensure logfile exists
+  file:
+    path: /var/log/clamd.scan
+    state: touch
+    owner: clamscan
+    group: clamscan
+
 - name: configure software
   lineinfile:
     dest: "{{ clamav_config[ansible_distribution ~ '-' ~ ansible_distribution_major_version]
