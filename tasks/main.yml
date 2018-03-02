@@ -56,12 +56,12 @@
   file:
     path: /var/log/clamd.scan
     state: touch
-    owner: "{{ clamav_permission[ansible_distribution ~ '-' ~ ansible_distribution_major_version]
-          | default(clamav_permission[ansible_distribution]
-          | default(clamav_permission['default'] )) }}.owner"
-    group: "{{ clamav_permission[ansible_distribution ~ '-' ~ ansible_distribution_major_version]
-          | default(clamav_permission[ansible_distribution]
-          | default(clamav_permission['default'] )) }}.group"
+    owner: "{{ clamav_permission[ansible_distribution ~ '-' ~ ansible_distribution_major_version][owner]
+          | default(clamav_permission[ansible_distribution][owern]
+          | default(clamav_permission['default'][owner] )) }}"
+    group: "{{ clamav_permission[ansible_distribution ~ '-' ~ ansible_distribution_major_version][group]
+          | default(clamav_permission[ansible_distribution][group]
+          | default(clamav_permission['default'][group] )) }}"
 
 - name: configure software
   lineinfile:
