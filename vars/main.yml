@@ -43,28 +43,28 @@ clamav_services:
   default:
     - clamav
 
-clamav_permission:
-  Alpine:
-    - owner: clamav
-      group: clamav
-  Archlinux:
-    - owner: root
-      group: root
-  CentOS-6:
-    - owner: clam
-      group: clam
-  CentOS-7:
-    - owner: clamscan
-      group: clamscan
-  Debian:
-    - owner: clamav
-      group: clamav
-  Fedora:
-    - owner: clamscan
-      group: clamscan
-  openSUSE Leap:
-    - owner: vscan
-      group: vscan
-  Ubuntu:
-    - owner: clamav
-      group: clamav
+# clamav_permission:
+#   Alpine:
+#     - owner: clamav
+#       group: clamav
+#   Archlinux:
+#     - owner: root
+#       group: root
+#   CentOS-6:
+#     - owner: clam
+#       group: clam
+#   CentOS-7:
+#     - owner: clamscan
+#       group: clamscan
+#   Debian:
+#     - owner: clamav
+#       group: clamav
+#   Fedora:
+#     - owner: clamscan
+#       group: clamscan
+#   openSUSE Leap:
+#     - owner: vscan
+#       group: vscan
+#   Ubuntu:
+#     - owner: clamav
+#       group: clamav
