@@ -59,6 +59,9 @@ clamav_permission:
   Debian:
     - owner: clamav
       group: clamav
+  Fedora:
+    - owner: clamscan
+      group: clamscan
   openSUSE Leap:
     - owner: vscan
       group: vscan
