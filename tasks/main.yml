@@ -58,7 +58,8 @@
     state: touch
     owner: "{{ item.owner }}"
     group: "{{ item.group }}"
-  with_items: "{{ clamav_permission[ansible_distribution] }}"
+  with_items: "{{ clamav_permission[ansible_distribution ~ '-' ansible_distribution_major_version]
+               | default(clamav_permission[ansible_distribution] ) }}"
 
 - name: configure software
   lineinfile:
