@@ -7,6 +7,8 @@
     - "{{ clamav_packages[ansible_distribution ~ '-' ~ ansible_distribution_major_version]
       | default(clamav_packages[ansible_distribution]
       | default(clamav_packages['default'] )) }}"
+  notify:
+    - update virus definitions
 
 - name: allowing system virus scanning
   seboolean:

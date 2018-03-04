@@ -11,6 +11,9 @@
   when:
     - ansible_virtualization_type != "docker"
 
+- name: update virus definitions
+  command: freshclam
+
 - name: create selinux mod
   command: checkmodule -M -m -o /etc/my-clamd.mod /etc/my-clamd.te
 
