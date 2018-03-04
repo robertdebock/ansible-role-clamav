@@ -42,6 +42,8 @@ clamav_services:
     - clamd@scan
   default:
     - clamav
+  openSUSE Leap:
+    - clamd
 
 # clamav_permission:
 #   Alpine:
