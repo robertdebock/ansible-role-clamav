@@ -44,6 +44,8 @@ clamav_services:
     - clamav
   openSUSE Leap:
     - clamd
+  Ubunut:
+    - clamav-daemon
 
 # clamav_permission:
 #   Alpine:
