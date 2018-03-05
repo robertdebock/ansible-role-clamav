@@ -51,6 +51,14 @@
     - ansible_selinux.status is defined
     - ansible_selinux.status == "enabled"
 
+# - name: configure freshclam
+#   lineinfile:
+#     path: /etc/clamav/freshclam
+#     line: "{{ item.parameter }} {{ item.value }}"
+#     regexp: "^{{ item.parameter }} "
+#   with_items:
+#     - "{{ clamav_freshclam_config }}"
+
 - name: flush handlers
   meta: flush_handlers
 

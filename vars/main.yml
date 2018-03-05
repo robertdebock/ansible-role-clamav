@@ -76,3 +76,9 @@ clamav_permission:
   Ubuntu:
     - owner: clamav
       group: clamav
+
+# clamav_freshclam_config:
+#   - parameter: DatabaseOwner
+#     value: root
+#   - parameter: UpdateLogFile
+#     value: /var/log/freshclam.log

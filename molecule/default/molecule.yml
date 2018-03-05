@@ -8,8 +8,8 @@ driver:
 lint:
   name: yamllint
 platforms:
-  - name: clamav-archlinux
-    image: base/archlinux
+  # - name: clamav-archlinux
+  #   image: base/archlinux
   - name: clamav-alpine-3.6
     image: alpine:3.6
   - name: clamav-alpine-3.7
