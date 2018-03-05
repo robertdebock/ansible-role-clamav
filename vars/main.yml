@@ -38,8 +38,12 @@ clamav_config:
   Ubuntu: /etc/clamav/clamd.conf
 
 clamav_services:
+  CentOS-6:
+    - clamd
   CentOS-7:
     - clamd@scan
+  Debian:
+    - clamav-daemon
   default:
     - clamav
   openSUSE Leap:
