@@ -28,12 +28,6 @@ platforms:
     image: debian:stretch
   - name: clamav-debian-wheezy
     image: debian:wheezy
-  - name: clamav-fedora-23
-    image: fedora:23
-  - name: clamav-fedora-24
-    image: fedora:24
-  - name: clamav-fedora-25
-    image: fedora:25
   - name: clamav-fedora-26
     image: fedora:26
   - name: clamav-fedora-27
