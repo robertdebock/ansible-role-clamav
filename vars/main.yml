@@ -46,6 +46,8 @@ clamav_services:
     - clamav-daemon
   default:
     - clamav
+  Fedora:
+    - clamd@scan
   openSUSE Leap:
     - clamd
   Ubuntu:
