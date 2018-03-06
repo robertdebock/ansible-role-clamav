@@ -20,7 +20,10 @@ Role Variables
 Dependencies
 ------------
 
+Use these roles to prepare your system for this role:
+
 - robertdebock.bootstrap
+- robertdebock.epel
 
 Download the dependencies by issuing this command:
 ```
@@ -34,6 +37,8 @@ Example Playbook
 - hosts: servers
 
   roles:
+    - role: robertdebock.bootstrap
+    - role: robertdebock.epel
     - role: robertdebock.clamav
       clamav_tcpsocket: 10025
       clamav_tcpaddr: 127.0.0.1
