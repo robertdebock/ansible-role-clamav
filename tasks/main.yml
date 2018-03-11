@@ -34,6 +34,7 @@
     - checkpolicy
     - policycoreutils-python
     - policycoreutils
+    - policycoreutils-python-utils
   when:
     - ansible_selinux.status == "enabled"
 
