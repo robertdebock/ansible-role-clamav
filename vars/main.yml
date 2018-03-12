@@ -79,6 +79,17 @@ clamav_permission:
     - owner: clamav
       group: clamav
 
+clamav_extra_software:
+  default:
+    - checkpolicy
+    - policycoreutils-python
+    - policycoreutils
+  Fedora:
+    - checkpolicy
+    - policycoreutils-python
+    - policycoreutils
+    - policycoreutils-python-utils
+  
 # clamav_freshclam_config:
 #   - parameter: DatabaseOwner
 #     value: root
