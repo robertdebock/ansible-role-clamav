@@ -6,14 +6,14 @@ dependency:
 driver:
   name: vagrant
   provider:
-    name: virtualbox
+    name: libvirt
 lint:
   name: yamllint
 platforms:
   # - name: clamav-centos-6
   #   box: centos/6
-  # - name: clamav-centos-7
-  #   box: centos/7
+  - name: clamav-centos-7
+    box: centos/7
   # - name: clamav-debian-jessie64
   #   box: debian/jessie64
   # - name: clamav-debian-buster64
