@@ -89,7 +89,7 @@ clamav_extra_software:
     - policycoreutils-python
     - policycoreutils
     - policycoreutils-python-utils
-  
+
 # clamav_freshclam_config:
 #   - parameter: DatabaseOwner
 #     value: root
