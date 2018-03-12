@@ -17,6 +17,7 @@
     state: yes
     persistent: yes
   when:
+    - ansible_selinux is defined
     - ansible_selinux.status == "enabled"
 
 - name: allowing jit
@@ -25,6 +26,7 @@
     state: yes
     persistent: yes
   when:
+    - ansible_selinux is defined
     - ansible_selinux.status == "enabled"
 
 - name: install required selinux software
@@ -36,6 +38,7 @@
     - policycoreutils
     - policycoreutils-python-utils
   when:
+    - ansible_selinux is defined
     - ansible_selinux.status == "enabled"
 
 - name: place selinux type enforcement
@@ -47,6 +50,7 @@
     - create selinux pp
     - load selinux pp
   when:
+    - ansible_selinux is defined
     - ansible_selinux.status == "enabled"
 
 # - name: configure freshclam
