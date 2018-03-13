@@ -25,9 +25,9 @@ platforms:
   - name: clamav-opensuse-openSUSE-42-2-x86-64
     box: opensuse/openSUSE-42.2-x86_64
   - name: clamav-ubuntu-trusty
-    box: ubuntu/trusty64
+    box: elastic/ubuntu-14.04-x86_64
   - name: clamav-ubuntu-artful
-    box: ubuntu/artful64
+    box: generic/ubuntu1710
 provisioner:
   name: ansible
   lint:
