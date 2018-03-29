@@ -27,7 +27,7 @@
   notify:
     - check update virus definitions
 
-  - name: check update virus definitions
+- name: check update virus definitions
   async_status:
     jid: "{{ updatevirusdefinitions.ansible_job_id }}"
   register: job_result
