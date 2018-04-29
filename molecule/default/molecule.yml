@@ -36,15 +36,10 @@ platforms:
     image: opensuse:42.2
   - name: clamav-opensuse-42.3
     image: opensuse:42.3
-    # 14.04 LTS
-  - name: clamav-ubuntu-trusty
-    image: ubuntu:trusty
-    # 16.04 LTS
-  - name: clamav-ubuntu-xenial
-    image: ubuntu:xenial
-    # 17.04
   - name: clamav-ubuntu-artful
     image: ubuntu:artful
+  - name: clamav-ubuntu-bionic
+    image: ubuntu:bionic
 provisioner:
   name: ansible
   lint:
