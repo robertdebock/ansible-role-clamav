@@ -45,7 +45,7 @@
 
 - name: place selinux type enforcement
   copy:
-    src: files/my-clamd.te
+    src: my-clamd.te
     dest: /etc/my-clamd.te
   notify:
     - create selinux mod
