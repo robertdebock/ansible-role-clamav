@@ -24,6 +24,8 @@ clamav_packages:
     - clamav-update
   openSUSE Leap:
     - clamav
+  openSUSE Tumbleweed:
+    - clamav
   Ubuntu:
     - clamav
     - clamav-daemon
@@ -35,6 +37,7 @@ clamav_config:
   Debian: /etc/clamav/clamd.conf
   default: /etc/clamd.d/scan.conf
   openSUSE Leap: /etc/clamd.conf
+  openSUSE Tumbleweed: /etc/clamd.conf
   Ubuntu: /etc/clamav/clamd.conf
 
 clamav_services:
@@ -49,6 +52,8 @@ clamav_services:
   Fedora:
     - clamd@scan
   openSUSE Leap:
+    - clamd
+  openSUSE Tumbleweed:
     - clamd
   Ubuntu:
     - clamav-daemon
@@ -75,6 +80,8 @@ clamav_permission:
   openSUSE Leap:
     - owner: vscan
       group: vscan
+  openSUSE Tumbleweed:
+    - owner: vscan
   Ubuntu:
     - owner: clamav
       group: clamav
