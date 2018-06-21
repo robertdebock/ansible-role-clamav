@@ -8,14 +8,14 @@ driver:
 lint:
   name: yamllint
 platforms:
-  - name: clamav-fedora-28
-    image: fedora:28
+  - name: clamav-ubuntu-latest
+    image: ubuntu:latest
 provisioner:
   name: ansible
   lint:
     name: ansible-lint
 scenario:
-  name: fedora-28
+  name: ubuntu-latest
 verifier:
   name: goss
   lint:

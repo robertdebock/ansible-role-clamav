@@ -8,14 +8,14 @@ driver:
 lint:
   name: yamllint
 platforms:
-  - name: clamav-ubuntu-bionic
-    image: ubuntu:bionic
+  - name: clamav-debian-latest
+    image: debian:latest
 provisioner:
   name: ansible
   lint:
     name: ansible-lint
 scenario:
-  name: ubuntu-bionic
+  name: debian-latest
 verifier:
   name: goss
   lint:
