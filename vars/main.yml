@@ -82,6 +82,7 @@ clamav_permission:
       group: vscan
   openSUSE Tumbleweed:
     - owner: vscan
+      group: vscan
   Ubuntu:
     - owner: clamav
       group: clamav
