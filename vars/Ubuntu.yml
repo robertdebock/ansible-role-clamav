@@ -1,0 +1,10 @@
+---
+# vars file for clamav
+clamav_packages:
+  - clamav
+  - clamav-daemon
+
+clamav_config: /etc/clamav/clamd.conf
+
+clamav_service:
+  - clamav-daemon

@@ -1,0 +1,14 @@
+---
+# vars file for clamav
+clamav_packages:
+  - clamav
+  - clamav-scanner
+  - clamav-update
+
+clamav_config: /etc/clamd.conf
+
+clamav_service: clamd
+
+clamav_permission:
+  - owner: clam
+    group: clam

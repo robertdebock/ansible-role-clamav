@@ -1,0 +1,21 @@
+---
+# vars file for clamav
+clamav_packages:
+  - clamav
+  - clamav-scanner
+  - clamav-scanner-systemd
+  - clamav-update
+
+clamav_config: /etc/clamd.d/scan.conf
+
+clamav_service: clamav
+
+clamav_permission:
+  - owner: clamav
+    group: clamav
+
+clamav_requirements:
+  default:
+    - checkpolicy
+    - policycoreutils-python
+    - policycoreutils

@@ -1,0 +1,13 @@
+---
+# vars file for clamav
+clamav_packages:
+  - clamav
+  - clamav-scanner
+  - clamav-scanner-systemd
+  - clamav-update
+
+clamav_service: clamd@scan
+
+clamav_permission:
+  - owner: clamscan
+    group: clamscan

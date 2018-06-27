@@ -1,0 +1,10 @@
+---
+# vars file for clamav
+clamav_config: /etc/clamd.conf
+
+clamav_service:
+  - clamd
+
+clamav_permission:
+  - owner: vscan
+    group: vscan

@@ -5,9 +5,7 @@
     name: "{{ item }}"
     state: restarted
   with_items:
-    - "{{ clamav_services[ansible_distribution ~ '-' ~ ansible_distribution_major_version]
-      | default(clamav_services[ansible_distribution]
-      | default(clamav_services['default'] )) }}"
+    - "{{ clamav_service }}"
   when:
     - ansible_virtualization_type != "docker"
 
@@ -17,7 +15,7 @@
     state: touch
     owner: "{{ item.owner }}"
     group: "{{ item.group }}"
-  with_items: "{{ clamav_permission[ansible_distribution ~ '-' ~ ansible_distribution_major_version] | default (clamav_permission[ansible_distribution])}}"
+  with_items: "{{ clamav_permission }}"
 
 - name: update virus definitions
   command: freshclam

@@ -1,12 +1,21 @@
 ---
 # tasks file for clamav
+- name: load default variables
+  include_vars:
+    file: default.yml
+
+- name: load os-specific variables
+  include_vars: "{{ item }}"
+  with_first_found:
+    - "{{ ansible_distribution }}-{{ansible_distribution_major_version }}.yml"
+    - "{{ ansible_distribution }}.yml"
+    - default.yml
+
 - name: install software
   package:
     name: "{{ item }}"
   with_items:
-    - "{{ clamav_packages[ansible_distribution ~ '-' ~ ansible_distribution_major_version]
-      | default(clamav_packages[ansible_distribution]
-      | default(clamav_packages['default'] )) }}"
+    - "{{ clamav_packages }}"
   notify:
     - update virus definitions
     - ensure logfile exists
@@ -35,9 +44,7 @@
   package:
     name: "{{ item }}"
   with_items:
-    - "{{ clamav_extra_software[ansible_distribution ~ '-' ~ ansible_distribution_major_version]
-      | default(clamav_extra_software[ansible_distribution]
-      | default(clamav_extra_software['default'] )) }}"
+    - "{{ clamav_requirements }}"
   when:
     - ansible_selinux is defined
     - ansible_selinux != false
@@ -61,9 +68,7 @@
 
 - name: configure software
   lineinfile:
-    dest: "{{ clamav_config[ansible_distribution ~ '-' ~ ansible_distribution_major_version]
-      | default(clamav_config[ansible_distribution]
-      | default(clamav_config['default'] )) }}"
+    dest: "{{ clamav_config }}"
     line: "{{ item.line }}"
     state: "{{ item.state | default('present')}}"
   with_items:
@@ -77,8 +82,6 @@
     state: started
     enabled: yes
   with_items:
-    - "{{ clamav_services[ansible_distribution ~ '-' ~ ansible_distribution_major_version]
-      | default(clamav_services[ansible_distribution]
-      | default(clamav_services['default'] )) }}"
+    - "{{ clamav_service }}"
   when:
     - ansible_virtualization_type != "docker"
