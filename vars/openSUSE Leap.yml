@@ -1,5 +1,8 @@
 ---
 # vars file for clamav
+clamav_packages:
+  - clamav
+
 clamav_config: /etc/clamd.conf
 
 clamav_service:
