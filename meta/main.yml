@@ -2,17 +2,14 @@
 galaxy_info:
   author: Robert de Bock
   role_name: clamav
-  description: Provides clamav for your system.
+  description: ClamAV is an open source antivirus engine for detecting trojans, viruses, malware & other malicious threats.
   license: Apache License, Version 2.0
-  min_ansible_version: 2.3
+  min_ansible_version: 2.4
   min_ansible_container_version: 0.2.0
 
   platforms:
     - name: Alpine
       versions:
-        - all
-    - name: ArchLinux
-      version:
         - all
     - name: CentOS
       version:
@@ -37,14 +34,20 @@ galaxy_info:
         - bionic
 
   galaxy_tags:
-    - clamav
-    - installer
-    - package
     - alpine
     - centos
+    - clamav
     - debian
     - fedora
+    - installer
+    - opensuse
+    - package
     - rhel
+    - scan
+    - security
+    - system
     - ubuntu
+    - virus
+    - virusscan
 
 dependencies: []
