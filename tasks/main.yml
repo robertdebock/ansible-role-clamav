@@ -63,6 +63,11 @@
     - ansible_selinux != false
     - ansible_selinux.status == "enabled"
 
+- name: place freshclam.conf
+  template:
+    src: freshclam.conf.j2
+    dest: "{{ clamav_config_dir }}/freshclam.conf
+
 - name: flush handlers
   meta: flush_handlers
 

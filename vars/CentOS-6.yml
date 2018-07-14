@@ -5,7 +5,8 @@ clamav_packages:
   - clamav-scanner
   - clamav-update
 
-clamav_config: /etc/clamd.conf
+clamav_config_dir: /etc
+clamav_config_file: clamd.conf
 
 clamav_service: clamd
 
