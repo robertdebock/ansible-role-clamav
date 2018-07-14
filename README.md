@@ -21,8 +21,17 @@ Requirements
 Role Variables
 --------------
 
-- clamav_tcpsocket: 10025
-- clamav_tcpaddr: 127.0.0.1
+- clamav_can_scan_system: Determine if SELinux capability should be allowed.
+- clamav_configuration: A dictionary containing settings. For example:
+
+```
+clamav_configuration:
+  - line: "Example"
+    state: absent
+  - line: "TCPSocket 10025"
+  - line: "TCPAddr 127.0.0.1"
+  - line: "LogFile /var/log/clamd.scan"
+```
 
 Dependencies
 ------------
