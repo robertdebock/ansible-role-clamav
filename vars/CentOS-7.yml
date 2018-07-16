@@ -8,6 +8,5 @@ clamav_packages:
 
 clamav_service: clamd@scan
 
-clamav_permission:
-  - owner: clamscan
-    group: clamscan
+clamav_owner: clamscan
+clamav_group: clamscan

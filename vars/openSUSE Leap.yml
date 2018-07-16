@@ -9,6 +9,5 @@ clamav_config_file: clamd.conf
 clamav_service:
   - clamd
 
-clamav_permission:
-  - owner: vscan
-    group: vscan
+clamav_owner: vscan
+clamav_group: vscan

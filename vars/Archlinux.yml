@@ -6,6 +6,5 @@ clamav_packages:
 clamav_configdir: /etc/clamav
 clamav_configfile: clamd.conf
 
-clamav_permission:
-  - owner: root
-    group: root
+clamav_owner: root
+clamav_group: root

@@ -10,6 +10,5 @@ clamav_config_file: clamd.conf
 
 clamav_service: clamd
 
-clamav_permission:
-  - owner: clam
-    group: clam
+clamav_owner: clam
+clamav_group: clam
