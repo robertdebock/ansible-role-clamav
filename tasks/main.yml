@@ -73,7 +73,7 @@
 
 - name: configure software
   lineinfile:
-    dest: "{{ clamav_config }}"
+    dest: "{{ clamav_config_dir }}/{{ clamav_config_file }}"
     line: "{{ item.line }}"
     state: "{{ item.state | default('present')}}"
   with_items:
