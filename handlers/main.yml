@@ -13,9 +13,8 @@
   file:
     path: /var/log/clamd.scan
     state: touch
-    owner: "{{ item.owner }}"
-    group: "{{ item.group }}"
-  with_items: "{{ clamav_permission }}"
+    owner: "{{ clamav_owner }}"
+    group: "{{ clamav_group }}"
 
 - name: update virus definitions
   command: freshclam
