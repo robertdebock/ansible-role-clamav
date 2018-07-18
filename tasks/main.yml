@@ -18,7 +18,7 @@
     - "{{ clamav_packages }}"
   notify:
     - update virus definitions
-    - ensure logfile exists
+    - ensure logfiles exists
 
 - name: allowing system virus scanning
   seboolean:

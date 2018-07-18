@@ -6,6 +6,8 @@ clamav_packages:
 clamav_config_dir: /etc
 clamav_config_file: clamd.conf
 
+clamav_freshclam_log_dir: /var/log
+
 clamav_service:
   - clamd
 

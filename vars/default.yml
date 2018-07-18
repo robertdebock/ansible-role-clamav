@@ -9,6 +9,8 @@ clamav_packages:
 clamav_config_dir: /etc/clamd.d
 clamav_config_file: scan.conf
 
+clamav_freshclam_log_dir: /var/log/clamav
+
 clamav_service: clamav
 
 clamav_owner: clamav

@@ -9,12 +9,15 @@
   when:
     - ansible_virtualization_type != "docker"
 
-- name: ensure logfile exists
+- name: ensure logfiles exists
   file:
-    path: /var/log/clamd.scan
+    path: "{{ item }}"
     state: touch
     owner: "{{ clamav_owner }}"
     group: "{{ clamav_group }}"
+  with_items:
+    - /var/log/clamd.scan
+    -  "{{ clamav_freshclam_log_dir }}/freshclam.log"
 
 - name: update virus definitions
   command: freshclam
