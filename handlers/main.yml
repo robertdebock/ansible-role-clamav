@@ -17,7 +17,7 @@
     group: "{{ clamav_group }}"
   with_items:
     - /var/log/clamd.scan
-    -  "{{ clamav_freshclam_log_dir }}/freshclam.log"
+    - "{{ clamav_freshclam_log_dir }}/freshclam.log"
 
 - name: update virus definitions
   command: freshclam
