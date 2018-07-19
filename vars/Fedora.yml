@@ -6,6 +6,9 @@ clamav_packages:
   - clamav-scanner-systemd
   - clamav-update
 
+clamav_config_dir: /etc
+clamav_config_file: clamd.conf
+
 clamav_service: clamd@scan
 
 clamav_owner: clamscan
