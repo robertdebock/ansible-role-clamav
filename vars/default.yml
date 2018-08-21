@@ -17,7 +17,6 @@ clamav_owner: clamav
 clamav_group: clamav
 
 clamav_requirements:
-  default:
-    - checkpolicy
-    - policycoreutils-python
-    - policycoreutils
+  - checkpolicy
+  - policycoreutils-python
+  - policycoreutils
