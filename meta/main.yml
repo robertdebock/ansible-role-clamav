@@ -11,10 +11,6 @@ galaxy_info:
     - name: Alpine
       versions:
         - all
-    - name: CentOS
-      version:
-        - 6
-        - 7
     - name: Debian
       versions:
         - all

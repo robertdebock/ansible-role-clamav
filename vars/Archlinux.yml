@@ -3,8 +3,8 @@
 clamav_packages:
   - clamav
 
-clamav_configdir: /etc/clamav
-clamav_configfile: clamd.conf
+clamav_config_dir: /etc/clamav
+clamav_config_file: clamd.conf
 
 clamav_owner: root
 clamav_group: root
