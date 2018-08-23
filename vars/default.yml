@@ -8,6 +8,7 @@ clamav_packages:
 
 clamav_config_dir: /etc/clamd.d
 clamav_config_file: scan.conf
+clamav_database_directory: /var/lib/clamav
 
 clamav_freshclam_log_dir: /var/log/clamav
 

@@ -68,6 +68,11 @@
     src: freshclam.conf.j2
     dest: "{{ clamav_config_dir }}/freshclam.conf"
 
+- name: create database directory
+  file:
+    path: "{{ clamav_database_direcotry }}"
+    state: directory
+
 - name: flush handlers
   meta: flush_handlers
 
