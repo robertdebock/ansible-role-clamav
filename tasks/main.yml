@@ -87,11 +87,21 @@
     - restart clamav
 
 - name: start and enable software
-  service:
-    name: "{{ item }}"
-    state: started
-    enabled: yes
-  with_items:
-    - "{{ clamav_service }}"
-  when:
-    - ansible_virtualization_type != "docker"
+  block
+    - service:
+      name: "{{ item }}"
+      state: started
+      enabled: yes
+    with_items:
+      - "{{ clamav_service }}"
+    when:
+      - ansible_virtualization_type != "docker"
+  rescue:
+    - name: remove selinux type enforcements
+      file:
+        path: /etc/my-clamd.te
+        state: absent
+    when:
+      - ansible_selinux is defined
+      - ansible_selinux != false
+        - ansible_selinux.status == "enabled"
