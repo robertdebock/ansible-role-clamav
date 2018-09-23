@@ -87,7 +87,7 @@
     - restart clamav
 
 - name: start and enable software
-  block
+  block:
     - service:
       name: "{{ item }}"
       state: started
