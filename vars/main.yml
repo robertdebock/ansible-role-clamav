@@ -1,0 +1,99 @@
+---
+# vars file for clamav
+clamav_packages:
+  default:
+    - clamav
+    - clamav-scanner
+    - clamav-scanner-systemd
+    - clamav-update
+  Alpine:
+    - clamav-daemon
+  Archlinux:
+    - clamav
+  CentOS-6:
+    - clamav
+    - clamav-scanner
+    - clamav-update
+  CentOS-7:
+    - clamav
+    - clamav-scanner
+    - clamav-scanner-systemd
+    - clamav-update
+  Debian:
+    - clamav
+    - clamav-daemon
+  Fedora:
+    - clamav
+    - clamav-scanner
+    - clamav-scanner-systemd
+    - clamav-update
+  openSUSE Leap:
+    - clamav
+  openSUSE Tumbleweed:
+    - clamav
+  Ubuntu:
+    - clamav
+    - clamav-daemon
+
+clamav_config_dir:
+  default: /etc/clamd.d
+  Alpine: /etc/clamav
+  Archlinux: /etc/clamav
+  CentOS-6: /etc
+  Debian: /etc/clamav
+  openSUSE Leap: /etc
+  openSUSE Tumbleweed: /etc
+  Ubuntu: /etc/clamav
+
+clamav_config_file:
+  default: scan.conf
+  Alpine: clamd.conf
+  Archlinux: clamd.conf
+  CentOS-6: clamd.conf
+  Debian: clamd.conf
+  openSUSE Leap: clamd.conf
+  openSUSE Tumbleweed: clamd.conf
+  Ubuntu: clamd.conf
+
+clamav_database_directory: /var/lib/clamav
+
+clamav_freshclam_log_dir:
+  default: /var/log/clamav
+  Archlinux: /var/log
+  CentOS-7: /var/log
+  Fedora: /var/log
+  openSUSE Leap: /var/log
+  openSUSE Tumbleweed: /var/log
+
+clamav_service:
+  default: clamav
+  CentOS-6: clamd
+  CentOS-7: clamd@scan
+  Debian: clamav-daemon
+  Fedora: clamd@scan
+  openSUSE Leap: clamd
+  openSUSE Tumbleweed: clamd
+  Ubuntu: clamav-daemon
+
+clamav_owner:
+  default: clamav
+  Archlinux: root
+  CentOS-6: clam
+  CentOS-7: clamscan
+  Fedora: clamscan
+  openSUSE Leap: vscan
+  openSUSE Tumbleweed: vscan
+
+clamav_group:
+  default: clamav
+  Archlinux: root
+  CentOS-6: clam
+  CentOS-7: clamscan
+  Fedora: clamscan
+  openSUSE Leap: vscan
+  openSUSE Tumbleweed: vscan
+
+clamav_requirements:
+  - checkpolicy
+  - policycoreutils-python
+  - policycoreutils

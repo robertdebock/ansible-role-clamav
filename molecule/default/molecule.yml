@@ -1,0 +1,52 @@
+---
+dependency:
+  name: galaxy
+  options:
+    role-file: requirements.yml
+driver:
+  name: docker
+lint:
+  name: yamllint
+platforms:
+  - name: clamav-alpine-edge
+    image: alpine:edge
+    command: sh -c "while true ; do sleep 1 ; done"
+  - name: clamav-alpine-latest
+    image: alpine:latest
+    command: sh -c "while true ; do sleep 1 ; done"
+  - name: clamav-archlinux
+    image: base/archlinux
+  - name: clamav-centos-6
+    image: centos:6
+  - name: clamav-centos-latest
+    image: centos:latest
+  - name: clamav-debian-latest
+    image: debian:latest
+  - name: clamav-debian-stable
+    image: debian:stable
+  - name: clamav-debian-unstable
+    image: debian:unstable
+  - name: clamav-fedora-latest
+    image: fedora:latest
+  - name: clamav-fedora-rawhide
+    image: fedora:rawhide
+  - name: clamav-gentoo
+    image: gentoo/stage3-amd64
+  - name: clamav-opensuse-leap
+    image: opensuse:leap
+  - name: clamav-opensuse-tumbleweed
+    image: opensuse:tumbleweed
+  - name: clamav-ubuntu-artful
+    image: ubuntu:artful
+  - name: clamav-ubuntu-devel
+    image: ubuntu:devel
+provisioner:
+  name: ansible
+  lint:
+    name: ansible-lint
+scenario:
+  name: default
+verifier:
+  name: goss
+  lint:
+    name: yamllint

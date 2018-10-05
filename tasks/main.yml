@@ -1,22 +1,11 @@
 ---
 # tasks file for clamav
-- name: load default variables
-  include_vars:
-    file: default.yml
-
-- name: load os-specific variables
-  include_vars: "{{ item }}"
-  with_first_found:
-    - "{{ ansible_distribution }}-{{ansible_distribution_major_version }}.yml"
-    - "{{ ansible_distribution }}.yml"
-    - default.yml
-
-- name: install software
+- name: install clamav software
   package:
-    name: "{{ item }}"
-    state: present
-  with_items:
-    - "{{ clamav_packages }}"
+    name: "{{ clamav_stable_packages[ansible_distribution ~ '-' ~ ansible_distribution_major_version]
+          | default (clamav_stable_packages[ansible_distribution]
+          | default (clamav_stable_packages['default'] )) }}"
+    state: "{{ clamav_package_state }}"
   notify:
     - update virus definitions
     - ensure logfiles exists
@@ -43,10 +32,8 @@
 
 - name: install required selinux software
   package:
-    name: "{{ item }}"
-    state: present
-  with_items:
-    - "{{ clamav_requirements }}"
+    name: "{{ clamav_requirements }}"
+    state: "{{ clamav_package_state }}"
   when:
     - ansible_selinux is defined
     - ansible_selinux != false
@@ -68,7 +55,9 @@
 - name: place freshclam.conf
   template:
     src: freshclam.conf.j2
-    dest: "{{ clamav_config_dir }}/freshclam.conf"
+    dest: "{{ clamav_config_dir[ansible_distribution ~ '-' ~ ansible_distribution_major_version]
+          | default (clamav_config_dir[ansible_distribution]
+          | default (clamav_config_dir['default'] )) }}/freshclam.conf"
 
 - name: create database directory
   file:
@@ -78,9 +67,13 @@
 - name: flush handlers
   meta: flush_handlers
 
-- name: configure software
+- name: configure clamav software
   lineinfile:
-    dest: "{{ clamav_config_dir }}/{{ clamav_config_file }}"
+    dest: "{{ clamav_config_dir[ansible_distribution ~ '-' ~ ansible_distribution_major_version]
+          | default (clamav_config_dir[ansible_distribution]
+          | default (clamav_config_dir['default'] )) }}/{{ clamav_config_file[ansible_distribution ~ '-' ~ ansible_distribution_major_version]
+          | default (clamav_config_file[ansible_distribution]
+          | default (clamav_config_file['default'] )) }}"
     line: "{{ item.line }}"
     state: "{{ item.state | default('present')}}"
   with_items:
@@ -88,11 +81,13 @@
   notify:
     - restart clamav
 
-- name: start and enable software
+- name: start and enable clamav service
   block:
     - name: start and enable software
       service:
-        name: "{{ clamav_service }}"
+        name: "{{ clamav_service[ansible_distribution ~ '-' ~ ansible_distribution_major_version]
+              | default (clamav_service[ansible_distribution]
+              | default (clamav_service['default'] )) }}"
         state: started
         enabled: yes
       when:
