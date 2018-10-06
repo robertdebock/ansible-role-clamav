@@ -2,9 +2,9 @@
 # tasks file for clamav
 - name: install clamav software
   package:
-    name: "{{ clamav_stable_packages[ansible_distribution ~ '-' ~ ansible_distribution_major_version]
-          | default (clamav_stable_packages[ansible_distribution]
-          | default (clamav_stable_packages['default'] )) }}"
+    name: "{{ clamav_packages[ansible_distribution ~ '-' ~ ansible_distribution_major_version]
+          | default (clamav_packages[ansible_distribution]
+          | default (clamav_packages['default'] )) }}"
     state: "{{ clamav_package_state }}"
   notify:
     - update virus definitions
