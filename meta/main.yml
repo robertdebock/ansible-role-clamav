@@ -3,7 +3,8 @@ galaxy_info:
   author: Robert de Bock
   role_name: clamav
   description: ClamAV is an open source antivirus engine for detecting trojans, viruses, malware & other malicious threats.
-  license: Apache License, Version 2.0
+  license: Apache-2.0
+  company: none
   min_ansible_version: 2.4
 
   platforms:

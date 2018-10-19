@@ -17,7 +17,7 @@
     persistent: yes
   when:
     - ansible_selinux is defined
-    - ansible_selinux != false
+    - not ansible_selinux
     - ansible_selinux.status == "enabled"
 
 - name: allowing jit
@@ -27,7 +27,7 @@
     persistent: yes
   when:
     - ansible_selinux is defined
-    - ansible_selinux != false
+    - not ansible_selinux
     - ansible_selinux.status == "enabled"
 
 - name: install required selinux software
@@ -36,7 +36,7 @@
     state: "{{ clamav_package_state }}"
   when:
     - ansible_selinux is defined
-    - ansible_selinux != false
+    - not ansible_selinux
     - ansible_selinux.status == "enabled"
 
 - name: place selinux type enforcement
@@ -49,7 +49,7 @@
     - load selinux pp
   when:
     - ansible_selinux is defined
-    - ansible_selinux != false
+    - not ansible_selinux
     - ansible_selinux.status == "enabled"
 
 - name: place freshclam.conf
@@ -75,7 +75,7 @@
           | default (clamav_config_file[ansible_distribution]
           | default (clamav_config_file['default'] )) }}"
     line: "{{ item.line }}"
-    state: "{{ item.state | default('present')}}"
+    state: "{{ item.state | default('present') }}"
   with_items:
     - "{{ clamav_configuration }}"
   notify:
@@ -99,5 +99,5 @@
         state: absent
       when:
         - ansible_selinux is defined
-        - ansible_selinux != false
+        - not ansible_selinux
         - ansible_selinux.status == "enabled"
