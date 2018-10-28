@@ -5,57 +5,71 @@ clamav
 
 Provides ClamAV for your system.
 
-[Unit tests](https://travis-ci.org/robertdebock/ansible-role-clamav) are done on every commit and periodically.
 
-If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-clamav/issues)
+Example Playbook
+----------------
 
-To test this role locally please use [Molecule](https://github.com/metacloud/molecule):
+This example is taken from `molecule/default/playbook.yml`:
 ```
-pip install molecule
-molecule test
+---
+- name: Converge
+  hosts: all
+  gather_facts: false
+
+  roles:
+    - role: robertdebock.bootstrap
+    - role: robertdebock.epel
+    - role: ansible-role-clamav
+
 ```
-There are many scenarios available, please have a look in the `molecule/` directory.
-
-Context
---------
-This role is a part of many compatible roles. Have a look at [the documentation of these roles](https://robertdebock.nl/) for further information.
-
-Here is an overview of related roles:
-![dependencies](https://raw.githubusercontent.com/robertdebock/drawings/artifacts/clamav.png "Dependency")
-
-Requirements
-------------
-
-- Access to a repository containing packages, likely on the internet.
-- The repository EPEL (for CentOS/RHEL systems). This dependency is managed by an explicit reference to `robertdebock.epel` in meta/main.yml.
 
 Role Variables
 --------------
 
-- clamav_can_scan_system: Determine if SELinux capability should be allowed.
-- clamav_configuration: A dictionary containing settings. For example:
-
+These variables are set in `defaults/main.yml`:
 ```
+---
+# defaults file for clamav
+
+# SELinux has to be configured to allow scanning. Set clamav_can_scan_system to
+# either "yes" or "no". Only has effect on systems that support SELinux.
+clamav_can_scan_system: yes
+
+# Configure any parameter using "regexp" and "line". The parameter "regexp"
+# contains the line that needs to be replaced. The replacement is stored in
+# "line".
 clamav_configuration:
   - line: "Example"
     state: absent
   - line: "TCPSocket 10025"
   - line: "TCPAddr 127.0.0.1"
   - line: "LogFile /var/log/clamd.scan"
+
+# To update all packages installed by this roles, set `clamav_package_state` to `latest`.
+clamav_package_state: present
+
 ```
 
-Dependencies
+Requirements
 ------------
 
-Use these roles to prepare your system for this role:
+- Access to a repository containing packages, likely on the internet.
+- A recent version of Ansible. (Tests run on the last 3 release of Ansible.)
 
-- [robertdebock.bootstrap](https://travis-ci.org/robertdebock/ansible-role-bootstrap)
-- [robertdebock.epel](https://travis-ci.org/robertdebock/ansible-role-epel)
+These roles can be installed to ensure all requirements are met:
 
-Download the dependencies by issuing this command:
-```
-ansible-galaxy install --role-file requirements.yml
-```
+- none
+
+To install all requirements at once: `ansible-galaxy install -r requirements.yml`.
+
+Context
+-------
+
+This role is a part of many compatible roles. Have a look at [the documentation of these roles](https://robertdebock.nl/) for further information.
+
+Here is an overview of related roles:
+![dependencies](https://raw.githubusercontent.com/robertdebock/drawings/artifacts/clamav.png "Dependency")
+
 
 Compatibility
 -------------
@@ -82,28 +96,26 @@ This role has been tested against the following distributions and Ansible versio
 
 A single star means the build may fail, it's marked as an experimental build.
 
-The star means the build may fail, it's marked as an experimental build.
+Testing
+-------
 
-Example Playbook
-----------------
+[Unit tests](https://travis-ci.org/robertdebock/ansible-role-clamav) are done on every commit and periodically.
 
+If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-clamav/issues)
+
+To test this role locally please use [Molecule](https://github.com/metacloud/molecule):
 ```
-- hosts: servers
-
-  roles:
-    - role: robertdebock.bootstrap
-    - role: robertdebock.epel
-    - role: robertdebock.clamav
-      clamav_tcpsocket: 10025
-      clamav_tcpaddr: 127.0.0.1
+pip install molecule
+molecule test
 ```
+There are many specific scenarios available, please have a look in the `molecule/` directory.
 
-Install this role using `galaxy install robertdebock.clamav`.
 
 License
 -------
 
-Apache License, Version 2.0
+Apache-2.0
+
 
 Author Information
 ------------------

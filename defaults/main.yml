@@ -1,5 +1,6 @@
 ---
 # defaults file for clamav
+
 # SELinux has to be configured to allow scanning. Set clamav_can_scan_system to
 # either "yes" or "no". Only has effect on systems that support SELinux.
 clamav_can_scan_system: yes

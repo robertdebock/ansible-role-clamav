@@ -2,8 +2,8 @@
 - name: Converge
   hosts: all
   gather_facts: false
-  become: true
 
   roles:
     - role: robertdebock.bootstrap
-    - role: ansible-role-bootstrap
+    - role: robertdebock.epel
+    - role: ansible-role-clamav
