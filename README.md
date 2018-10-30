@@ -17,9 +17,9 @@ This example is taken from `molecule/default/playbook.yml`:
   gather_facts: false
 
   roles:
-    - role: robertdebock.bootstrap
-    - role: robertdebock.epel
-    - role: ansible-role-clamav
+    - robertdebock.bootstrap
+    - robertdebock.epel
+    - robertdebock.clamav
 
 ```
 
@@ -56,11 +56,12 @@ Requirements
 - Access to a repository containing packages, likely on the internet.
 - A recent version of Ansible. (Tests run on the last 3 release of Ansible.)
 
-These roles can be installed to ensure all requirements are met:
+The following roles can be installed to ensure all requirements are met, using `ansible-galaxy install -r requirements.yml`:
 
-- none
+---
+- robertdebock.bootstrap
+- robertdebock.epel
 
-To install all requirements at once: `ansible-galaxy install -r requirements.yml`.
 
 Context
 -------
