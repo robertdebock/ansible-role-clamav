@@ -2,9 +2,7 @@
 # handlers file for clamav
 - name: restart clamav
   service:
-    name: "{{ clamav_service[ansible_distribution ~ '-' ~ ansible_distribution_major_version]
-          | default (clamav_service[ansible_distribution]
-          | default (clamav_service['default'] )) }}"
+    name: "{{ clamav_service }}"
     state: restarted
   when:
     - ansible_virtualization_type != "docker"
@@ -13,17 +11,11 @@
   file:
     path: "{{ item }}"
     state: touch
-    owner: "{{ clamav_owner[ansible_distribution ~ '-' ~ ansible_distribution_major_version]
-           | default (clamav_owner[ansible_distribution]
-           | default (clamav_owner['default'] )) }}"
-    group: "{{ clamav_group[ansible_distribution ~ '-' ~ ansible_distribution_major_version]
-           | default (clamav_group[ansible_distribution]
-           | default (clamav_group['default'] )) }}"
+    owner: "{{ clamav_owner }}"
+    group: "{{ clamav_group }}"
   with_items:
     - /var/log/clamd.scan
-    - "{{ clamav_freshclam_log_dir[ansible_distribution ~ '-' ~ ansible_distribution_major_version]
-      | default (clamav_freshclam_log_dir[ansible_distribution]
-      | default (clamav_freshclam_log_dir['default'] )) }}/freshclam.log"
+    - "{{ clamav_freshclam_log_dir }}"
 
 - name: update virus definitions
   command: freshclam

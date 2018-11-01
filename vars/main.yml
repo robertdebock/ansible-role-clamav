@@ -1,6 +1,6 @@
 ---
 # vars file for clamav
-clamav_packages:
+_clamav_packages:
   default:
     - clamav
     - clamav-scanner
@@ -35,7 +35,9 @@ clamav_packages:
     - clamav
     - clamav-daemon
 
-clamav_config_dir:
+clamav_packages: "{{ _clamav_packages[ansible_distribution ~ '-' ~ ansible_distribution_major_version] | default(_clamav_packages[ansible_distribution] | default(_clamav_packages['default'] )) }}"
+
+_clamav_config_dir:
   default: /etc/clamd.d
   Alpine: /etc/clamav
   Archlinux: /etc/clamav
@@ -45,7 +47,9 @@ clamav_config_dir:
   openSUSE Tumbleweed: /etc
   Ubuntu: /etc/clamav
 
-clamav_config_file:
+clamav_config_dir: "{{ _clamav_config_dir[ansible_distribution ~ '-' ~ ansible_distribution_major_version] | default(_clamav_config_dir[ansible_distribution] | default(_clamav_config_dir['default'] )) }}"
+
+_clamav_config_file:
   default: scan.conf
   Alpine: clamd.conf
   Archlinux: clamd.conf
@@ -55,9 +59,11 @@ clamav_config_file:
   openSUSE Tumbleweed: clamd.conf
   Ubuntu: clamd.conf
 
+clamav_config_file: "{{ _clamav_config_file[ansible_distribution ~ '-' ~ ansible_distribution_major_version] | default(_clamav_config_file[ansible_distribution] | default(_clamav_config_file['default'] )) }}"
+
 clamav_database_directory: /var/lib/clamav
 
-clamav_freshclam_log_dir:
+_clamav_freshclam_log_dir:
   default: /var/log/clamav
   Archlinux: /var/log
   CentOS-7: /var/log
@@ -65,7 +71,9 @@ clamav_freshclam_log_dir:
   openSUSE Leap: /var/log
   openSUSE Tumbleweed: /var/log
 
-clamav_service:
+clamav_freshclam_log_dir: "{{ _clamav_freshclam_log_dir[ansible_distribution] | default(_clamav_freshclam_log_dir['default']) }}"
+
+_clamav_service:
   default: clamav
   CentOS-6: clamd
   CentOS-7: clamd@scan
@@ -75,7 +83,9 @@ clamav_service:
   openSUSE Tumbleweed: clamd
   Ubuntu: clamav-daemon
 
-clamav_owner:
+clamav_service: "{{ _clamav_service[ansible_distribution ~ '-' ~ ansible_distribution_major_version] | default(_clamav_service[ansible_distribution] | default(_clamav_service['default'] )) }}"
+
+_clamav_owner:
   default: clamav
   Archlinux: root
   CentOS-6: clam
@@ -84,7 +94,9 @@ clamav_owner:
   openSUSE Leap: vscan
   openSUSE Tumbleweed: vscan
 
-clamav_group:
+clamav_owner: "{{ _clamav_owner[ansible_distribution ~ '-' ~ ansible_distribution_major_version] | default(_clamav_owner[ansible_distribution] | default(_clamav_owner['default'] )) }}"
+
+_clamav_group:
   default: clamav
   Archlinux: root
   CentOS-6: clam
@@ -92,6 +104,8 @@ clamav_group:
   Fedora: clamscan
   openSUSE Leap: vscan
   openSUSE Tumbleweed: vscan
+
+clamav_group: "{{ _clamav_group[ansible_distribution ~ '-' ~ ansible_distribution_major_version] | default(_clamav_group[ansible_distribution] | default(_clamav_group['default'] )) }}"
 
 clamav_requirements:
   - checkpolicy

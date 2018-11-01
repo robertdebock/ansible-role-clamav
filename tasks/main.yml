@@ -2,9 +2,7 @@
 # tasks file for clamav
 - name: install clamav software
   package:
-    name: "{{ clamav_packages[ansible_distribution ~ '-' ~ ansible_distribution_major_version]
-          | default (clamav_packages[ansible_distribution]
-          | default (clamav_packages['default'] )) }}"
+    name: "{{ clamav_packages }}"
     state: "{{ clamav_package_state }}"
   notify:
     - update virus definitions
@@ -55,9 +53,7 @@
 - name: place freshclam.conf
   template:
     src: freshclam.conf.j2
-    dest: "{{ clamav_config_dir[ansible_distribution ~ '-' ~ ansible_distribution_major_version]
-          | default (clamav_config_dir[ansible_distribution]
-          | default (clamav_config_dir['default'] )) }}/freshclam.conf"
+    dest: "{{ clamav_config_dir }}/freshclam.conf"
 
 - name: create database directory
   file:
@@ -69,11 +65,7 @@
 
 - name: configure clamav software
   lineinfile:
-    dest: "{{ clamav_config_dir[ansible_distribution ~ '-' ~ ansible_distribution_major_version]
-          | default (clamav_config_dir[ansible_distribution]
-          | default (clamav_config_dir['default'] )) }}/{{ clamav_config_file[ansible_distribution ~ '-' ~ ansible_distribution_major_version]
-          | default (clamav_config_file[ansible_distribution]
-          | default (clamav_config_file['default'] )) }}"
+    dest: "{{ clamav_config_dir }}/{{ clamav_config_file }}"
     line: "{{ item.line }}"
     state: "{{ item.state | default('present') }}"
   with_items:
@@ -85,9 +77,7 @@
   block:
     - name: start and enable software
       service:
-        name: "{{ clamav_service[ansible_distribution ~ '-' ~ ansible_distribution_major_version]
-              | default (clamav_service[ansible_distribution]
-              | default (clamav_service['default'] )) }}"
+        name: "{{ clamav_service }}"
         state: started
         enabled: yes
       when:
