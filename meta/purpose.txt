@@ -1,1 +1,0 @@
-Provides ClamAV for your system.

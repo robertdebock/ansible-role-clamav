@@ -3,8 +3,7 @@ clamav
 
 [![Build Status](https://travis-ci.org/robertdebock/ansible-role-clamav.svg?branch=master)](https://travis-ci.org/robertdebock/ansible-role-clamav)
 
-Provides ClamAV for your system.
-
+The purpose of this role is to install and configure clamav on your system.
 
 Example Playbook
 ----------------
