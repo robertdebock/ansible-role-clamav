@@ -2,10 +2,12 @@
 # handlers file for clamav
 - name: restart clamav
   service:
-    name: "{{ clamav_service }}"
+    name: "{{ item }}"
     state: restarted
   when:
     - ansible_virtualization_type != "docker"
+  with_items:
+    - "{{ clamav_services }}"
 
 - name: ensure logfiles exists
   file:
@@ -17,21 +19,22 @@
     - /var/log/clamd.scan
     - "{{ clamav_freshclam_log_dir }}"
 
+- name: stop clamav
+  service:
+    name: "{{ item }}"
+    state: stopped
+  with_items:
+    - "{{ clamav_services }}"
+  when:
+    - ansible_virtualization_type != "docker"
+
 - name: update virus definitions
   command: freshclam
+  args:
+    creates: /var/lib/clamav/main.cvd
   async: 900
-  poll: 60
+  poll: 0
   register: updatevirusdefinitions
-  notify:
-    - check update virus definitions
-
-- name: check update virus definitions
-  async_status:
-    jid: "{{ updatevirusdefinitions.ansible_job_id }}"
-  register: job_result
-  until: job_result.finished
-  retries: 15
-  delay: 60
 
 - name: create selinux mod
   command: checkmodule -M -m -o /etc/my-clamd.mod /etc/my-clamd.te

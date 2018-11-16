@@ -5,8 +5,9 @@
     name: "{{ clamav_packages }}"
     state: "{{ clamav_package_state }}"
   notify:
-    - update virus definitions
     - ensure logfiles exists
+    - stop clamav
+    - update virus definitions
 
 - name: allowing system virus scanning
   seboolean:
@@ -73,15 +74,27 @@
   notify:
     - restart clamav
 
+- name: check update virus definitions
+  async_status:
+    jid: "{{ updatevirusdefinitions.ansible_job_id }}"
+  register: job_result
+  until: job_result.finished
+  retries: 15
+  delay: 60
+  when:
+    - updatevirusdefinitions is defined
+
 - name: start and enable clamav service
   block:
     - name: start and enable software
       service:
-        name: "{{ clamav_service }}"
+        name: "{{ item }}"
         state: started
         enabled: yes
       when:
         - ansible_virtualization_type != "docker"
+      with_items:
+        - "{{ clamav_services }}"
   rescue:
     - name: remove selinux type enforcements
       file:

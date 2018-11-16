@@ -73,17 +73,27 @@ _clamav_freshclam_log_dir:
 
 clamav_freshclam_log_dir: "{{ _clamav_freshclam_log_dir[ansible_distribution] | default(_clamav_freshclam_log_dir['default']) }}"
 
-_clamav_service:
-  default: clamav
-  CentOS-6: clamd
-  CentOS-7: clamd@scan
-  Debian: clamav-daemon
-  Fedora: clamd@scan
-  openSUSE Leap: clamd
-  openSUSE Tumbleweed: clamd
-  Ubuntu: clamav-daemon
+_clamav_services:
+  default:
+    - clamav
+  CentOS-6:
+    - clamd
+  CentOS-7:
+    - clamd@scan
+  Debian:
+    - clamav-daemon
+    - clamav-freshclam
+  Fedora:
+    - clamd@scan
+  openSUSE Leap:
+    - clamd
+  openSUSE Tumbleweed:
+    - clamd
+  Ubuntu:
+    - clamav-daemon
+    - clamav-freshclam
 
-clamav_service: "{{ _clamav_service[ansible_distribution ~ '-' ~ ansible_distribution_major_version] | default(_clamav_service[ansible_distribution] | default(_clamav_service['default'] )) }}"
+clamav_services: "{{ _clamav_services[ansible_distribution ~ '-' ~ ansible_distribution_major_version] | default(_clamav_services[ansible_distribution] | default(_clamav_services['default'] )) }}"
 
 _clamav_owner:
   default: clamav
