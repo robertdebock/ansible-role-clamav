@@ -38,6 +38,8 @@ platforms:
     image: ubuntu:artful
   - name: clamav-ubuntu-devel
     image: ubuntu:devel
+  - name: clamav-ubuntu-latest
+    image: ubuntu:latest
 provisioner:
   name: ansible
   lint:
