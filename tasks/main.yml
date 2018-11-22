@@ -92,7 +92,7 @@
         state: started
         enabled: yes
       when:
-        - ansible_virtualization_type != "docker"
+        - ansible_virtualization_type != "docker" or clamav_ignore_docker
       with_items:
         - "{{ clamav_services }}"
   rescue:
