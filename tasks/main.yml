@@ -8,6 +8,9 @@
     - ensure logfiles exists
     - stop clamav
     - update virus definitions
+  register: clamav_install_clamav_software
+  until: clamav_install_clamav_software is succeeded
+  retries: 3
 
 - name: allowing system virus scanning
   seboolean:
@@ -37,6 +40,9 @@
     - ansible_selinux is defined
     - ansible_selinux
     - ansible_selinux.status == "enabled"
+  register: clamav_install_required_selinux_software
+  until: clamav_install_required_selinux_software is succeeded
+  retries: 3
 
 - name: place selinux type enforcement
   copy:
