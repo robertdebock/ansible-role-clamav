@@ -15,7 +15,7 @@ platforms:
     image: alpine:latest
     command: sh -c "while true ; do sleep 1 ; done"
   - name: clamav-archlinux
-    image: base/archlinux
+    image: archlinux/base
   - name: clamav-centos-6
     image: centos:6
   - name: clamav-centos-latest
