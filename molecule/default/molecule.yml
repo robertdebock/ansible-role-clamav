@@ -34,8 +34,10 @@ platforms:
     image: opensuse:leap
   - name: clamav-opensuse-tumbleweed
     image: opensuse:tumbleweed
-  - name: clamav-ubuntu-artful
-    image: ubuntu:artful
+  - name: clamav-ubuntu-latest
+    image: ubuntu:latest
+  - name: clamav-ubuntu-rolling
+    image: ubuntu:rolling
   - name: clamav-ubuntu-devel
     image: ubuntu:devel
   - name: clamav-ubuntu-latest
