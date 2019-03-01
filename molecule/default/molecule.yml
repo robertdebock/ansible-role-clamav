@@ -32,8 +32,6 @@ platforms:
     image: fedora:rawhide
   - name: clamav-opensuse-leap
     image: opensuse:leap
-  - name: clamav-opensuse-tumbleweed
-    image: opensuse:tumbleweed
   - name: clamav-ubuntu-latest
     image: ubuntu:latest
   - name: clamav-ubuntu-rolling
