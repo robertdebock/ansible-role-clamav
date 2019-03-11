@@ -14,6 +14,3 @@ clamav_configuration:
   - line: "TCPSocket 10025"
   - line: "TCPAddr 127.0.0.1"
   - line: "LogFile /var/log/clamd.scan"
-
-# To update all packages installed by this roles, set `clamav_package_state` to `latest`.
-clamav_package_state: present

@@ -3,7 +3,7 @@
 - name: install clamav software
   package:
     name: "{{ clamav_packages }}"
-    state: "{{ clamav_package_state }}"
+    state: present
   notify:
     - ensure logfiles exists
     - stop clamav
@@ -35,7 +35,7 @@
 - name: install required selinux software
   package:
     name: "{{ clamav_requirements }}"
-    state: "{{ clamav_package_state }}"
+    state: present
   when:
     - ansible_selinux is defined
     - ansible_selinux
