@@ -25,9 +25,6 @@ platforms:
   - name: clamav-centos-latest
     image: centos:latest
     pre_build_image: yes
-  - name: clamav-debian-latest
-    image: debian:latest
-    pre_build_image: yes
   - name: clamav-debian-stable
     image: debian:stable
     pre_build_image: yes
