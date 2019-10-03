@@ -1,20 +1,11 @@
 ---
 # vars file for clamav
 _clamav_packages:
-  default:
-    - clamav
-    - clamav-scanner
-    - clamav-scanner-systemd
-    - clamav-update
   Alpine:
     - clamav-daemon
   Archlinux:
     - clamav
-  CentOS-6:
-    - clamav
-    - clamav-scanner
-    - clamav-update
-  CentOS-7:
+  RedHat:
     - clamav
     - clamav-scanner
     - clamav-scanner-systemd
@@ -22,92 +13,74 @@ _clamav_packages:
   Debian:
     - clamav
     - clamav-daemon
-  Fedora:
+  Suse:
     - clamav
-    - clamav-scanner
-    - clamav-scanner-systemd
-    - clamav-update
-  openSUSE Leap:
-    - clamav
-  Ubuntu:
-    - clamav
-    - clamav-daemon
 
-clamav_packages: "{{ _clamav_packages[ansible_distribution ~ '-' ~ ansible_distribution_major_version] | default(_clamav_packages[ansible_distribution] | default(_clamav_packages['default'] )) }}"
+clamav_packages: "{{ _clamav_packages[ansible_os_family] }}"
 
 _clamav_config_dir:
   default: /etc/clamd.d
   Alpine: /etc/clamav
   Archlinux: /etc/clamav
-  CentOS-6: /etc
+  RedHat: /etc/clamd.d
   Debian: /etc/clamav
-  openSUSE Leap: /etc
-  Ubuntu: /etc/clamav
+  Suse: /etc
 
-clamav_config_dir: "{{ _clamav_config_dir[ansible_distribution ~ '-' ~ ansible_distribution_major_version] | default(_clamav_config_dir[ansible_distribution] | default(_clamav_config_dir['default'] )) }}"
+clamav_config_dir: "{{ _clamav_config_dir[ansible_os_family] }}"
 
 _clamav_config_file:
   default: scan.conf
   Alpine: clamd.conf
   Archlinux: clamd.conf
-  CentOS-6: clamd.conf
+  RedHat: scan.conf
   Debian: clamd.conf
-  openSUSE Leap: clamd.conf
-  Ubuntu: clamd.conf
+  Suse: clamd.conf
 
-clamav_config_file: "{{ _clamav_config_file[ansible_distribution ~ '-' ~ ansible_distribution_major_version] | default(_clamav_config_file[ansible_distribution] | default(_clamav_config_file['default'] )) }}"
+clamav_config_file: "{{ _clamav_config_file[ansible_os_family] }}"
 
 clamav_database_directory: /var/lib/clamav
 
 _clamav_freshclam_log_dir:
-  default: /var/log/clamav
   Archlinux: /var/log
-  CentOS-7: /var/log
-  Fedora: /var/log
-  openSUSE Leap: /var/log
+  Debian: /var/log/clamav
+  RedHat: /var/log
+  Suse: /var/log
 
-clamav_freshclam_log_dir: "{{ _clamav_freshclam_log_dir[ansible_distribution] | default(_clamav_freshclam_log_dir['default']) }}"
+clamav_freshclam_log_dir: "{{ _clamav_freshclam_log_dir[ansible_os_family] }}"
 
 _clamav_services:
-  default:
+  Alpine:
     - clamav
-  CentOS-6:
-    - clamd
-  CentOS-7:
+  Archlinux:
+    - clamav
+  RedHat:
     - clamd@scan
   Debian:
     - clamav-daemon
     - clamav-freshclam
-  Fedora:
-    - clamd@scan
-  openSUSE Leap:
+  Suse:
     - clamd
     - clamd
-  Ubuntu:
-    - clamav-daemon
-    - clamav-freshclam
 
-clamav_services: "{{ _clamav_services[ansible_distribution ~ '-' ~ ansible_distribution_major_version] | default(_clamav_services[ansible_distribution] | default(_clamav_services['default'] )) }}"
+clamav_services: "{{ _clamav_services[ansible_os_family] }}"
 
 _clamav_owner:
-  default: clamav
+  Alpine: clamav
   Archlinux: root
-  CentOS-6: clam
-  CentOS-7: clamscan
-  Fedora: clamscan
-  openSUSE Leap: vscan
+  Debian: clamav
+  RedHat: clamscan
+  Suse: vscan
 
-clamav_owner: "{{ _clamav_owner[ansible_distribution ~ '-' ~ ansible_distribution_major_version] | default(_clamav_owner[ansible_distribution] | default(_clamav_owner['default'] )) }}"
+clamav_owner: "{{ _clamav_owner[ansible_os_family }}"
 
 _clamav_group:
-  default: clamav
+  Alpine: clamav
   Archlinux: root
-  CentOS-6: clam
-  CentOS-7: clamscan
-  Fedora: clamscan
-  openSUSE Leap: vscan
+  Debian: clamav
+  RedHat: clamscan
+  Suse: vscan
 
-clamav_group: "{{ _clamav_group[ansible_distribution ~ '-' ~ ansible_distribution_major_version] | default(_clamav_group[ansible_distribution] | default(_clamav_group['default'] )) }}"
+clamav_group: "{{ _clamav_group[ansible_os_family] }}"
 
 clamav_requirements:
   - checkpolicy
