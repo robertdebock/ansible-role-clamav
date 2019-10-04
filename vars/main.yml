@@ -71,7 +71,7 @@ _clamav_owner:
   RedHat: clamscan
   Suse: vscan
 
-clamav_owner: "{{ _clamav_owner[ansible_os_family }}"
+clamav_owner: "{{ _clamav_owner[ansible_os_family] }}"
 
 _clamav_group:
   Alpine: clamav
