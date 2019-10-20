@@ -41,6 +41,7 @@ clamav_config_file: "{{ _clamav_config_file[ansible_os_family] }}"
 clamav_database_directory: /var/lib/clamav
 
 _clamav_freshclam_log_dir:
+  Alpine: /var/log
   Archlinux: /var/log
   Debian: /var/log/clamav
   RedHat: /var/log
