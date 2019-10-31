@@ -4,8 +4,6 @@
   service:
     name: "{{ item }}"
     state: restarted
-  when:
-    - ansible_virtualization_type != "docker"
   with_items:
     - "{{ clamav_services }}"
 
@@ -25,8 +23,6 @@
     state: stopped
   with_items:
     - "{{ clamav_services }}"
-  when:
-    - ansible_virtualization_type != "docker"
 
 - name: update virus definitions
   command: freshclam
