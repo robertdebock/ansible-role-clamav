@@ -1,6 +1,10 @@
 ---
 # vars file for clamav
 _clamav_packages:
+  Amazon-2018:
+    - clamav-server
+    - clamav-scanner
+    - clamav-update
   Alpine:
     - clamav-daemon
   Archlinux:
@@ -16,7 +20,7 @@ _clamav_packages:
   Suse:
     - clamav
 
-clamav_packages: "{{ _clamav_packages[ansible_os_family] }}"
+clamav_packages: "{{ _clamav_packages[ansible_distribution ~ '-' ~ ansible_distribution_major_version] | default(_clamav_packages[ansible_os_family]) }}"
 
 _clamav_config_dir:
   default: /etc/clamd.d
@@ -52,6 +56,8 @@ clamav_freshclam_log_dir: "{{ _clamav_freshclam_log_dir[ansible_os_family] }}"
 _clamav_services:
   Alpine:
     - clamav
+  Amazon:
+    - clamd
   Archlinux:
     - clamav
   RedHat:
