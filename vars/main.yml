@@ -54,7 +54,7 @@ _clamav_freshclam_log_dir:
 clamav_freshclam_log_dir: "{{ _clamav_freshclam_log_dir[ansible_os_family] }}"
 
 _clamav_services:
-  Alpine: clamav
+  Alpine: clamd
   Amazon-2018: clamd.scan
   Amazon-Candidate: clamd@scan
   Archlinux: clamav
