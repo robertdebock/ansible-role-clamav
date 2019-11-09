@@ -57,7 +57,7 @@ _clamav_services:
   Alpine:
     - clamav
   Amazon:
-    - clamd
+    - clamd.scan
   Archlinux:
     - clamav
   RedHat:
@@ -67,9 +67,8 @@ _clamav_services:
     - clamav-freshclam
   Suse:
     - clamd
-    - clamd
 
-clamav_services: "{{ _clamav_services[ansible_os_family] }}"
+clamav_services: "{{ _clamav_services[ansible_distribution] | default(_clamav_services[ansible_os_family]) }}"
 
 _clamav_owner:
   Alpine: clamav
