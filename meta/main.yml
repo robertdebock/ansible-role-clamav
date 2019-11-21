@@ -35,7 +35,6 @@ galaxy_info:
   galaxy_tags:
     - centos
     - clamav
-    - debian
     - fedora
     - installer
     - opensuse
