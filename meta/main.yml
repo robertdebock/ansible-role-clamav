@@ -36,7 +36,6 @@ galaxy_info:
     - centos
     - clamav
     - installer
-    - opensuse
     - package
     - rhel
     - scan
