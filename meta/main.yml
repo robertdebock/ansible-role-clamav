@@ -41,7 +41,6 @@ galaxy_info:
     - scan
     - security
     - system
-    - ubuntu
     - virus
     - virusscan
 
