@@ -37,7 +37,6 @@ galaxy_info:
     - clamav
     - installer
     - package
-    - redhat
     - scan
     - security
     - system
