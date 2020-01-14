@@ -12,6 +12,9 @@ _clamav_packages:
     - clamav-scanner
     - clamav-scanner-systemd
     - clamav-update
+  Fedora-32:
+    - clamav
+    - clamd
   Debian:
     - clamav
     - clamav-daemon
@@ -30,7 +33,6 @@ _clamav_config_dir:
 clamav_config_dir: "{{ _clamav_config_dir[ansible_os_family] }}"
 
 _clamav_config_file:
-  default: scan.conf
   Alpine: clamd.conf
   RedHat: scan.conf
   Debian: clamd.conf
