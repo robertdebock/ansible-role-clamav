@@ -9,8 +9,9 @@ on:
   push:
     tags_ignore:
       - '*'
+  pull_request:
   schedule:
-    - cron: '14 22 3 * *'
+    - cron: '20 11 3 * *'
 
 jobs:
   lint:
