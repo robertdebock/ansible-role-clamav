@@ -75,8 +75,7 @@
     dest: "{{ clamav_config_dir }}/{{ clamav_config_file }}"
     line: "{{ item.line }}"
     state: "{{ item.state | default('present') }}"
-  with_items:
-    - "{{ clamav_configuration }}"
+  loop: "{{ clamav_configuration }}"
   notify:
     - restart clamav
 
@@ -97,8 +96,7 @@
         name: "{{ item }}"
         state: started
         enabled: yes
-      with_items:
-        - "{{ clamav_services }}"
+      loop: "{{ clamav_services }}"
   rescue:
     - name: remove selinux type enforcements
       file:
