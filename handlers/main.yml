@@ -4,8 +4,7 @@
   service:
     name: "{{ item }}"
     state: restarted
-  with_items:
-    - "{{ clamav_services }}"
+  loop: "{{ clamav_services }}"
 
 - name: ensure logfiles exists
   file:
@@ -13,7 +12,7 @@
     state: touch
     owner: "{{ clamav_owner }}"
     group: "{{ clamav_group }}"
-  with_items:
+  loop:
     - /var/log/clamd.scan
     - "{{ clamav_freshclam_log_dir }}"
 
@@ -21,8 +20,7 @@
   service:
     name: "{{ item }}"
     state: stopped
-  with_items:
-    - "{{ clamav_services }}"
+  loop: "{{ clamav_services }}"
 
 - name: update virus definitions
   command: freshclam
