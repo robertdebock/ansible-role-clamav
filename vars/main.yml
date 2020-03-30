@@ -9,8 +9,6 @@ _clamav_packages:
     - clamav-daemon
   RedHat:
     - clamav
-    - clamav-scanner
-    - clamav-scanner-systemd
     - clamav-update
   Fedora-32:
     - clamav
@@ -34,7 +32,7 @@ clamav_config_dir: "{{ _clamav_config_dir[ansible_os_family] }}"
 
 _clamav_config_file:
   Alpine: clamd.conf
-  RedHat: scan.conf
+  RedHat: freshclam.conf
   Debian: clamd.conf
   Suse: clamd.conf
 
@@ -58,7 +56,7 @@ _clamav_services:
   Amazon-Candidate:
     - clamd@scan
   RedHat:
-    - clamd@scan
+    - clamav-freshclam
   Debian:
     - clamav-daemon
     - clamav-freshclam
@@ -70,7 +68,7 @@ clamav_services: "{{ _clamav_services[ansible_distribution ~ '-' ~ ansible_distr
 _clamav_owner:
   Alpine: clamav
   Debian: clamav
-  RedHat: clamscan
+  RedHat: clamupdate
   Suse: vscan
 
 clamav_owner: "{{ _clamav_owner[ansible_os_family] }}"
@@ -78,7 +76,7 @@ clamav_owner: "{{ _clamav_owner[ansible_os_family] }}"
 _clamav_group:
   Alpine: clamav
   Debian: clamav
-  RedHat: clamscan
+  RedHat: clamupdate
   Suse: vscan
 
 clamav_group: "{{ _clamav_group[ansible_os_family] }}"
