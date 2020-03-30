@@ -7,8 +7,13 @@ _clamav_packages:
     - clamav-update
   Alpine:
     - clamav-daemon
+  CentOS:
+    - clamav
+    - clamav-update
   RedHat:
     - clamav
+    - clamav-scanner
+    - clamav-scanner-systemd
     - clamav-update
   Fedora-32:
     - clamav
@@ -19,7 +24,7 @@ _clamav_packages:
   Suse:
     - clamav
 
-clamav_packages: "{{ _clamav_packages[ansible_distribution ~ '-' ~ ansible_distribution_major_version] | default(_clamav_packages[ansible_os_family]) }}"
+clamav_packages: "{{ _clamav_packages[ansible_distribution ~ '-' ~ ansible_distribution_major_version] | default(_clamav_packages[ansible_distribution] | default(_clamav_packages[ansible_os_family])) }}"
 
 _clamav_config_dir:
   default: /etc/clamd.d
@@ -32,11 +37,12 @@ clamav_config_dir: "{{ _clamav_config_dir[ansible_os_family] }}"
 
 _clamav_config_file:
   Alpine: clamd.conf
+  CentOS: scan.conf
   RedHat: freshclam.conf
   Debian: clamd.conf
   Suse: clamd.conf
 
-clamav_config_file: "{{ _clamav_config_file[ansible_os_family] }}"
+clamav_config_file: "{{ _clamav_config_file[ansible_distribution] | default(_clamav_config_file[ansible_os_family]) }}"
 
 clamav_database_directory: /var/lib/clamav
 
@@ -55,6 +61,8 @@ _clamav_services:
     - clamd.scan
   Amazon-Candidate:
     - clamd@scan
+  CentOS:
+    - clamd@scan
   RedHat:
     - clamav-freshclam
   Debian:
@@ -63,23 +71,25 @@ _clamav_services:
   Suse:
     - clamd
 
-clamav_services: "{{ _clamav_services[ansible_distribution ~ '-' ~ ansible_distribution_major_version] | default(_clamav_services[ansible_os_family]) }}"
+clamav_services: "{{ _clamav_services[ansible_distribution ~ '-' ~ ansible_distribution_major_version] | default(_clamav_services[ansible_distribution] | default(_clamav_services[ansible_os_family])) }}"
 
 _clamav_owner:
   Alpine: clamav
   Debian: clamav
+  CentOS: clamsscan
   RedHat: clamupdate
   Suse: vscan
 
-clamav_owner: "{{ _clamav_owner[ansible_os_family] }}"
+clamav_owner: "{{ _clamav_owner[ansible_distribution] | default(_clamav_owner[ansible_os_family]) }}"
 
 _clamav_group:
   Alpine: clamav
   Debian: clamav
+  CentOS: clamscan
   RedHat: clamupdate
   Suse: vscan
 
-clamav_group: "{{ _clamav_group[ansible_os_family] }}"
+clamav_group: "{{ _clamav_group[ansible_distribution] | default(_clamav_group[ansible_os_family]) }}"
 
 clamav_requirements:
   - checkpolicy
