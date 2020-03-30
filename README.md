@@ -104,7 +104,7 @@ This role has been tested on these [container images](https://hub.docker.com/):
 
 |container|tags|
 |---------|----|
-|amazon|all|
+|amazon|1|
 |alpine|all|
 |debian|all|
 |el|7, 8|

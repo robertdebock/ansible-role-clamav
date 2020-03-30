@@ -11,7 +11,7 @@ on:
       - '*'
   pull_request:
   schedule:
-    - cron: '0 10 3 * *'
+    - cron: '15 13 3 * *'
 
 jobs:
   lint:
@@ -34,8 +34,6 @@ jobs:
         config:
           - image: "amazonlinux"
             tag: "1"
-          - image: "amazonlinux"
-            tag: "latest"
           - image: "alpine"
             tag: "latest"
           - image: "alpine"
