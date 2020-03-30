@@ -10,7 +10,7 @@ galaxy_info:
   platforms:
     - name: Amazon
       versions:
-        - 1
+        - 2018.03
     - name: Alpine
       versions:
         - all
