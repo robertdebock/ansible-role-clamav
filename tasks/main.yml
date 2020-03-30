@@ -74,6 +74,7 @@
   lineinfile:
     dest: "{{ clamav_config_dir }}/{{ clamav_config_file }}"
     line: "{{ item.line }}"
+    create: yes
     state: "{{ item.state | default('present') }}"
   loop: "{{ clamav_configuration }}"
   notify:
