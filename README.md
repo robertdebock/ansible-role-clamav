@@ -5,7 +5,7 @@ Install and configure clamav on your system.
 
 |Travis|GitHub|Quality|Downloads|
 |------|------|-------|---------|
-|[![travis](https://travis-ci.com/robertdebock/ansible-role-clamav.svg?branch=master)](https://travis-ci.com/robertdebock/ansible-role-clamav)|[![github](https://github.com/robertdebock/ansible-role-clamav/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-clamav/actions)|![quality](https://img.shields.io/ansible/quality/23569)|![downloads](https://img.shields.io/ansible/role/d/23569)|
+|[![travis](https://travis-ci.com/robertdebock/ansible-role-clamav.svg?branch=master)](https://travis-ci.com/robertdebock/ansible-role-clamav)|[![github](https://github.com/robertdebock/ansible-role-clamav/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-clamav/actions)|[![quality](https://img.shields.io/ansible/quality/23569)](https://travis-ci.com/robertdebock/ansible-role-clamav.svg?branch=master)|![downloads](https://img.shields.io/ansible/role/d/23569)|
 
 Example Playbook
 ----------------
