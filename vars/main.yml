@@ -76,7 +76,7 @@ clamav_services: "{{ _clamav_services[ansible_distribution ~ '-' ~ ansible_distr
 _clamav_owner:
   Alpine: clamav
   Debian: clamav
-  RedHat: clamsscan
+  RedHat: clamscan
   CentOS: clamupdate
   Suse: vscan
 
