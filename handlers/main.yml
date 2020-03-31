@@ -14,7 +14,6 @@
     group: "{{ clamav_group }}"
   loop:
     - /var/log/clamd.scan
-    - "{{ clamav_freshclam_log_dir }}"
 
 - name: stop clamav
   service:
