@@ -83,8 +83,8 @@
 - name: check update virus definitions
   async_status:
     jid: "{{ updatevirusdefinitions.ansible_job_id }}"
-  register: job_result
-  until: job_result.finished
+  register: clamav_job_result
+  until: clamav_job_result.finished
   retries: 15
   delay: 60
   when:
