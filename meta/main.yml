@@ -21,12 +21,16 @@ galaxy_info:
       versions:
         - buster
         - bullseye
+    - name: Fedora
+      versions:
+        - 32
     - name: OpenSUSE
       versions:
         - all
     - name: Ubuntu
       versions:
         - focal
+        - bionic
         - xenial
 
   galaxy_tags:
