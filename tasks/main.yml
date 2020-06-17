@@ -91,19 +91,8 @@
     - updatevirusdefinitions is defined
 
 - name: start and enable clamav service
-  block:
-    - name: start and enable software
-      service:
-        name: "{{ item }}"
-        state: started
-        enabled: yes
-      loop: "{{ clamav_services }}"
-  rescue:
-    - name: remove selinux type enforcements
-      file:
-        path: /etc/my-clamd.te
-        state: absent
-      when:
-        - ansible_selinux is defined
-        - ansible_selinux | bool
-        - ansible_selinux.status == "enabled"
+  service:
+    name: "{{ item }}"
+    state: started
+    enabled: yes
+  loop: "{{ clamav_services }}"
