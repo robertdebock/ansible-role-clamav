@@ -1,0 +1,33 @@
+---
+- name: test if clamav_can_scan_system is set correctly
+  assert:
+    that:
+      - clamav_can_scan_system is defined
+      - clamav_can_scan_system | length > 0
+      - clamav_can_scan_system | type_debug == "bool"
+
+- name: test if clamav_configuration is set correctly
+  assert:
+    that:
+      - clamav_configuration is defined
+      - clamav_configuration | length > 0
+      - clamav_configuration is iterable
+
+- name: test if item in clamav_configuration is set correctly
+  assert:
+    that:
+      - item.line is defined
+      - item.line | length > 0
+  loop: "{{ clamav_configuration }}"
+  when:
+    - clamav_configuration is defined
+
+- name: test if item.state in clamav_configuration is set correctly
+  assert:
+    that:
+      - item.state | length > 0
+      - item.state in ["absent", "present"]
+  loop: "{{ clamav_configuration }}"
+  when:
+    - clamav_configuration is defined
+    - item.state is defined
