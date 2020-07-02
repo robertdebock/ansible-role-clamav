@@ -17,6 +17,7 @@
     that:
       - item.line is defined
       - item.line | length > 0
+    quiet: yes
   loop: "{{ clamav_configuration }}"
   when:
     - clamav_configuration is defined
@@ -26,6 +27,7 @@
     that:
       - item.state | length > 0
       - item.state in ["absent", "present"]
+    quiet: yes
   loop: "{{ clamav_configuration }}"
   when:
     - clamav_configuration is defined
