@@ -1,5 +1,6 @@
 ---
 # vars file for clamav
+
 _clamav_packages:
   Amazon-2018:
     - clamav-server
