@@ -4,6 +4,7 @@
     that:
       - clamav_can_scan_system is defined
       - clamav_can_scan_system | type_debug == "bool"
+    quiet: yes
 
 - name: test if clamav_configuration is set correctly
   assert:
@@ -11,6 +12,7 @@
       - clamav_configuration is defined
       - clamav_configuration | length > 0
       - clamav_configuration is iterable
+    quiet: yes
 
 - name: test if item in clamav_configuration is set correctly
   assert:
