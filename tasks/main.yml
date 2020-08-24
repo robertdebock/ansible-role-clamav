@@ -45,6 +45,7 @@
   copy:
     src: my-clamd.te
     dest: /etc/my-clamd.te
+    mode: "0640"
   notify:
     - create selinux mod
     - create selinux pp
@@ -58,11 +59,13 @@
   template:
     src: freshclam.conf.j2
     dest: "{{ clamav_config_dir }}/freshclam.conf"
+    mode: "0640"
 
 - name: create database directory
   file:
     path: "{{ clamav_database_directory }}"
     state: directory
+    mode: "0750"
 
 - name: flush handlers
   meta: flush_handlers
@@ -73,6 +76,7 @@
     line: "{{ item.line }}"
     create: yes
     state: "{{ item.state | default('present') }}"
+    mode: "0640"
   loop: "{{ clamav_configuration }}"
   notify:
     - restart clamav

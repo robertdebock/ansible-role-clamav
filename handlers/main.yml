@@ -12,6 +12,7 @@
     state: touch
     owner: "{{ clamav_owner }}"
     group: "{{ clamav_group }}"
+    mode: "0750"
   loop:
     - /var/log/clamd.scan
     - "{{ clamav_freshclam_log_dir }}/freshclam.log"
