@@ -65,7 +65,7 @@
   file:
     path: "{{ clamav_database_directory }}"
     state: directory
-    mode: "0750"
+    mode: "0755"
 
 - name: flush handlers
   meta: flush_handlers
