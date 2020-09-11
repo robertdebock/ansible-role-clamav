@@ -47,9 +47,9 @@
     dest: /etc/my-clamd.te
     mode: "0640"
   notify:
-    - create selinux mod
-    - create selinux pp
-    - load selinux pp
+    - create selinux mod for clamav
+    - create selinux pp for clamav
+    - load selinux pp for clamav
   when:
     - ansible_selinux is defined
     - ansible_selinux | bool

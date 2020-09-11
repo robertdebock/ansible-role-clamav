@@ -31,11 +31,11 @@
   poll: 0
   register: updatevirusdefinitions
 
-- name: create selinux mod
+- name: create selinux mod for clamav
   command: checkmodule -M -m -o /etc/my-clamd.mod /etc/my-clamd.te
 
-- name: create selinux pp
+- name: create selinux pp for clamav
   command: semodule_package -o /etc/my-clamd.pp -m /etc/my-clamd.mod
 
-- name: load selinux pp
+- name: load selinux pp for clamav
   command: semodule -i /etc/my-clamd.pp
