@@ -16,10 +16,9 @@ _clamav_packages:
     - clamav-scanner
     - clamav-scanner-systemd
     - clamav-update
-  Fedora-32: &new_fedora
+  Fedora:
     - clamav
     - clamd
-  Fedora-33: *new_fedora
   Debian:
     - clamav
     - clamav-daemon

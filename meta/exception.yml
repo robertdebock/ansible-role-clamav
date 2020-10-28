@@ -1,4 +1,0 @@
----
-exceptions:
-  - variation: fedora:rawhide
-    reason: "clamav-scanner No match for argument: clamav-scanner"
