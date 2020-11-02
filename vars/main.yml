@@ -6,6 +6,10 @@ _clamav_packages:
     - clamav-server
     - clamav-scanner
     - clamav-update
+  Amazon-2:
+    - clamd
+    - clamav
+    - clamav-update
   Alpine:
     - clamav-daemon
   CentOS:
