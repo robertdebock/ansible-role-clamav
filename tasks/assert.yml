@@ -30,7 +30,7 @@
   assert:
     that:
       - item.state | length > 0
-      - item.state in ["absent", "present"]
+      - item.state in [ "absent", "present" ]
     quiet: yes
   loop: "{{ clamav_configuration }}"
   loop_control:
