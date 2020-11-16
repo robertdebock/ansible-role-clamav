@@ -3,7 +3,7 @@
   assert:
     that:
       - clamav_can_scan_system is defined
-      - clamav_can_scan_system | type_debug == "bool"
+      - clamav_can_scan_system is boolean
     quiet: yes
 
 - name: test if clamav_configuration is set correctly
