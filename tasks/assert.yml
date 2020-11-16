@@ -10,7 +10,6 @@
   assert:
     that:
       - clamav_configuration is defined
-      - clamav_configuration | length > 0
       - clamav_configuration is iterable
     quiet: yes
 
@@ -18,7 +17,6 @@
   assert:
     that:
       - item.line is defined
-      - item.line | length > 0
     quiet: yes
   loop: "{{ clamav_configuration }}"
   loop_control:
@@ -29,7 +27,6 @@
 - name: test if item.state in clamav_configuration is set correctly
   assert:
     that:
-      - item.state | length > 0
       - item.state in [ "absent", "present" ]
     quiet: yes
   loop: "{{ clamav_configuration }}"
