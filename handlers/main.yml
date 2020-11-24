@@ -1,10 +1,13 @@
 ---
 # handlers file for clamav
+
 - name: restart clamav
   service:
     name: "{{ item }}"
     state: restarted
   loop: "{{ clamav_services }}"
+  when:
+    - not ansible_check_mode | bool
 
 - name: ensure logfiles exists
   file:
@@ -22,6 +25,8 @@
     name: "{{ item }}"
     state: stopped
   loop: "{{ clamav_services }}"
+  when:
+    - not ansible_check_mode | bool
 
 - name: update virus definitions
   command: freshclam
@@ -30,6 +35,8 @@
   async: 900
   poll: 0
   register: updatevirusdefinitions
+  when:
+    - not ansible_check_mode | bool
 
 - name: create selinux mod for clamav
   command: checkmodule -M -m -o /etc/my-clamd.mod /etc/my-clamd.te
