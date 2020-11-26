@@ -1,4 +1,5 @@
 ---
+
 - name: test if clamav_can_scan_system is set correctly
   assert:
     that:
