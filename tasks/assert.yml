@@ -18,6 +18,7 @@
   assert:
     that:
       - item.line is defined
+      - item.line is string
     quiet: yes
   loop: "{{ clamav_configuration }}"
   loop_control:
@@ -28,6 +29,7 @@
 - name: test if item.state in clamav_configuration is set correctly
   assert:
     that:
+      - item.state is string
       - item.state in [ "absent", "present" ]
     quiet: yes
   loop: "{{ clamav_configuration }}"
