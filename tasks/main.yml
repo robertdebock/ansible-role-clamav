@@ -14,44 +14,34 @@
     - stop clamav
     - update virus definitions
 
-- name: allowing system virus scanning
-  seboolean:
-    name: antivirus_can_scan_system
-    state: yes
-    persistent: yes
-  when:
-    - ansible_selinux is defined
-    - ansible_selinux | bool
-    - ansible_selinux.status == "enabled"
+- name: manage selinux settings
+  block:
+    - name: allowing system virus scanning
+      seboolean:
+        name: antivirus_can_scan_system
+        state: yes
+        persistent: yes
 
-- name: allowing jit
-  seboolean:
-    name: clamd_use_jit
-    state: yes
-    persistent: yes
-  when:
-    - ansible_selinux is defined
-    - ansible_selinux | bool
-    - ansible_selinux.status == "enabled"
+    - name: allowing jit
+      seboolean:
+        name: clamd_use_jit
+        state: yes
+        persistent: yes
 
-- name: install required selinux software
-  package:
-    name: "{{ clamav_requirements }}"
-    state: present
-  when:
-    - ansible_selinux is defined
-    - ansible_selinux | bool
-    - ansible_selinux.status == "enabled"
+    - name: install required selinux software
+      package:
+        name: "{{ clamav_requirements }}"
+        state: present
 
-- name: place selinux type enforcement
-  copy:
-    src: my-clamd.te
-    dest: /etc/my-clamd.te
-    mode: "0640"
-  notify:
-    - create selinux mod for clamav
-    - create selinux pp for clamav
-    - load selinux pp for clamav
+    - name: place selinux type enforcement
+      copy:
+        src: my-clamd.te
+        dest: /etc/my-clamd.te
+        mode: "0640"
+      notify:
+        - create selinux mod for clamav
+        - create selinux pp for clamav
+        - load selinux pp for clamav
   when:
     - ansible_selinux is defined
     - ansible_selinux | bool
