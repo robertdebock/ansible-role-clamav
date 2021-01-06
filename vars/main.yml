@@ -100,3 +100,12 @@ clamav_requirements:
   - checkpolicy
   - policycoreutils-python
   - policycoreutils
+
+_freshclam_mode:
+  Alpine: "0640"
+  Debian: "0444"
+  RedHat: "0640"
+  CentOS: "0640"
+  Suse: "0640"
+
+freshclam_mode: "{{ _freshclam_mode[ansible_distribution] | default(_freshclam_mode[ansible_os_family]) }}"
