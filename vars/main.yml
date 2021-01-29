@@ -103,7 +103,7 @@ _clamav_requirements:
     - checkpolicy
     - policycoreutils-python
     - policycoreutils
-  CentOS_8:
+  CentOS-8:
     - checkpolicy
     - python3-policycoreutils
     - policycoreutils
