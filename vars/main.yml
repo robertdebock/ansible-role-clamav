@@ -12,9 +12,6 @@ _clamav_packages:
     - clamav-update
   Alpine:
     - clamav-daemon
-  CentOS:
-    - clamav
-    - clamav-update
   RedHat:
     - clamav
     - clamav-scanner
@@ -68,7 +65,6 @@ _clamav_services:
     - clamd@scan
   RedHat:
     - clamd@scan
-  CentOS:
     - clamav-clamonacc
     - clamav-freshclam
   Debian:
