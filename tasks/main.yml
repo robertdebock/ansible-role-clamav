@@ -45,7 +45,6 @@
         - load selinux pp for clamav
   when:
     - ansible_selinux is defined
-    - ansible_selinux | bool
     - ansible_selinux.status == "enabled"
 
 - name: place freshclam.conf
