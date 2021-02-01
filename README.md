@@ -109,6 +109,7 @@ Apache-2.0
 
 I'd like to thank everybody that made contributions to this repository. It motivates me, improves the code and is just fun to collaborate.
 
+- [Chilinot](https://github.com/Chilinot)
 - [gaima8](https://github.com/gaima8)
 
 ## [Author Information](#author-information)
