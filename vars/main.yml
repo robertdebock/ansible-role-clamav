@@ -15,6 +15,7 @@ _clamav_packages:
   CentOS:
     - clamav
     - clamav-update
+    - clamav-scanner-systemd
   RedHat:
     - clamav
     - clamav-scanner
@@ -69,6 +70,8 @@ _clamav_services:
   RedHat:
     - clamd@scan
   CentOS:
+    - clamd@scan
+    - clamav-clamonacc
     - clamav-freshclam
   Debian:
     - clamav-daemon
@@ -96,10 +99,17 @@ _clamav_group:
 
 clamav_group: "{{ _clamav_group[ansible_distribution] | default(_clamav_group[ansible_os_family]) }}"
 
-clamav_requirements:
-  - checkpolicy
-  - policycoreutils-python
-  - policycoreutils
+clamav_requirements: "{{ _clamav_requirements[ansible_distribution ~ '-' ~ ansible_distribution_major_version] | default(_clamav_requirements[ansible_distribution] | default(_clamav_requirements[ansible_os_family])) | default(_clamav_requirements['default']) }}"
+
+_clamav_requirements:
+  default:
+    - checkpolicy
+    - policycoreutils-python
+    - policycoreutils
+  CentOS-8:
+    - checkpolicy
+    - python3-policycoreutils
+    - policycoreutils
 
 _freshclam_mode:
   Alpine: "0640"
