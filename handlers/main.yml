@@ -2,7 +2,7 @@
 # handlers file for clamav
 
 - name: restart clamav
-  service:
+  ansible.builtin.service:
     name: "{{ item }}"
     state: restarted
   loop: "{{ clamav_services }}"
@@ -10,7 +10,7 @@
     - not ansible_check_mode | bool
 
 - name: ensure logfiles exists
-  file:
+  ansible.builtin.file:
     path: "{{ item }}"
     state: touch
     owner: "{{ clamav_owner }}"
@@ -21,7 +21,7 @@
     - "{{ clamav_freshclam_log_dir }}/freshclam.log"
 
 - name: stop clamav
-  service:
+  ansible.builtin.service:
     name: "{{ item }}"
     state: stopped
   loop: "{{ clamav_services }}"

@@ -7,7 +7,7 @@
   delegate_to: localhost
 
 - name: install clamav software
-  package:
+  ansible.builtin.package:
     name: "{{ clamav_packages }}"
     state: present
   notify:
@@ -48,22 +48,22 @@
     - ansible_selinux.status == "enabled"
 
 - name: place freshclam.conf
-  template:
+  ansible.builtin.template:
     src: freshclam.conf.j2
     dest: "{{ clamav_config_dir }}/freshclam.conf"
     mode: "{{ freshclam_mode }}"
 
 - name: create database directory
-  file:
+  ansible.builtin.file:
     path: "{{ clamav_database_directory }}"
     state: directory
     mode: "0755"
 
 - name: flush handlers
-  meta: flush_handlers
+  ansible.builtin.meta: flush_handlers
 
 - name: configure clamav software
-  lineinfile:
+  ansible.builtin.lineinfile:
     dest: "{{ clamav_config_dir }}/{{ clamav_config_file }}"
     line: "{{ item.line }}"
     create: yes
@@ -74,7 +74,7 @@
     - restart clamav
 
 - name: check update virus definitions
-  async_status:
+  ansible.builtin.assert:
     jid: "{{ updatevirusdefinitions.ansible_job_id }}"
   register: clamav_job_result
   until:
@@ -85,7 +85,7 @@
     - updatevirusdefinitions is defined
 
 - name: start and enable clamav service
-  service:
+  ansible.builtin.service:
     name: "{{ item }}"
     state: started
     enabled: yes
