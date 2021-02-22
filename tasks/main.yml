@@ -74,7 +74,7 @@
     - restart clamav
 
 - name: check update virus definitions
-  ansible.builtin.assert:
+  ansible.builtin.async_status:
     jid: "{{ updatevirusdefinitions.ansible_job_id }}"
   register: clamav_job_result
   until:
