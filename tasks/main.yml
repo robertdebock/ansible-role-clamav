@@ -18,24 +18,24 @@
 - name: manage selinux settings
   block:
     - name: allowing system virus scanning
-      seboolean:
+      ansible.posix.seboolean:
         name: antivirus_can_scan_system
         state: yes
         persistent: yes
 
     - name: allowing jit
-      seboolean:
+      ansible.posix.seboolean:
         name: clamd_use_jit
         state: yes
         persistent: yes
 
     - name: install required selinux software
-      package:
+      ansible.builtin.package:
         name: "{{ clamav_requirements }}"
         state: present
 
     - name: place selinux type enforcement
-      copy:
+      ansible.builtin.copy:
         src: my-clamd.te
         dest: /etc/my-clamd.te
         mode: "0640"
