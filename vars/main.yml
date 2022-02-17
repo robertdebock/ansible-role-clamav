@@ -5,17 +5,17 @@ _clamav_packages:
   Alpine:
     - clamav-daemon
   Amazon-2018:
-    - clamav-server
     - clamav-scanner
+    - clamav-server
     - clamav-update
   Amazon-2:
-    - clamd
     - clamav
     - clamav-update
+    - clamd
   CentOS:
     - clamav
-    - clamav-update
     - clamav-scanner-systemd
+    - clamav-update
   Debian:
     - clamav
     - clamav-daemon
@@ -27,6 +27,10 @@ _clamav_packages:
     - clamav-scanner
     - clamav-scanner-systemd
     - clamav-update
+  Rocky:
+    - clamav
+    - clamav-update
+    - clamd
   Suse:
     - clamav
 
