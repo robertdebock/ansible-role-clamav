@@ -114,7 +114,9 @@ _clamav_requirements:
     - python3-policycoreutils
     - policycoreutils
   Rocky:
+    - checkpolicy
     - python3-policycoreutils
+    - policycoreutils
 
 _freshclam_mode:
   Alpine: "0640"
