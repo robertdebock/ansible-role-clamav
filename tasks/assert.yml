@@ -19,6 +19,7 @@
     that:
       - item.line is defined
       - item.line is string
+      - item.line is not none
     quiet: yes
   loop: "{{ clamav_configuration }}"
   loop_control:
