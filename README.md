@@ -2,9 +2,9 @@
 
 Install and configure clamav on your system.
 
-|GitHub|GitLab|Quality|Downloads|Version|
-|------|------|-------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-clamav/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-clamav/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-clamav/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-clamav)|[![quality](https://img.shields.io/ansible/quality/23569)](https://galaxy.ansible.com/robertdebock/clamav)|[![downloads](https://img.shields.io/ansible/role/d/23569)](https://galaxy.ansible.com/robertdebock/clamav)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-clamav.svg)](https://github.com/robertdebock/ansible-role-clamav/releases/)|
+|GitHub|GitLab|Downloads|Version|
+|------|------|---------|-------|
+|[![github](https://github.com/robertdebock/ansible-role-clamav/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-clamav/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-clamav/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-clamav)|[![downloads](https://img.shields.io/ansible/role/d/24458)](https://galaxy.ansible.com/robertdebock/clamav)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-clamav.svg)](https://github.com/robertdebock/ansible-role-clamav/releases/)|
 
 ## [Example Playbook](#example-playbook)
 
@@ -100,7 +100,7 @@ The minimum version of Ansible required is 2.12, tests have been done to:
 - The current version.
 - The development version.
 
-If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-clamav/issues)
+If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-clamav/issues).
 
 ## [License](#license)
 
