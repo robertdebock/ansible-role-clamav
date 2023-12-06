@@ -60,6 +60,16 @@ clamav_configuration:
   - line: "LogFile /var/log/clamd.scan"
 ```
 
+### [Playbook Variables](#playbook-variables)
+
+Aside from variables documented in `vars/main.yml` that can be overridden, if you have local clamav mirrors (as recommended by ClamAV), you will also need to define a list variable with your mirrors to add, as the following example indicate.
+
+```
+freshclam_private_mirrors:
+  - mirror1.mynetwork.com
+  - mirror2.mynetwork.com
+```
+
 ## [Requirements](#requirements)
 
 - pip packages listed in [requirements.txt](https://github.com/robertdebock/ansible-role-clamav/blob/master/requirements.txt).
