@@ -39,3 +39,11 @@
   when:
     - clamav_configuration is defined
     - item.state is defined
+
+- name: assert | Test freshclam_private_mirrors
+  ansible.builtin.assert:
+    that:
+      - freshclam_private_mirrors is iterable
+    quiet: yes
+  when:
+    - freshclam_private_mirrors is defined
