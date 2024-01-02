@@ -4,7 +4,7 @@ Install and configure clamav on your system.
 
 |GitHub|GitLab|Downloads|Version|
 |------|------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-clamav/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-clamav/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-clamav/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-clamav)|[![downloads](https://img.shields.io/ansible/role/d/24458)](https://galaxy.ansible.com/robertdebock/clamav)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-clamav.svg)](https://github.com/robertdebock/ansible-role-clamav/releases/)|
+|[![github](https://github.com/robertdebock/ansible-role-clamav/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-clamav/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-clamav/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-clamav)|[![downloads](https://img.shields.io/ansible/role/d/robertdebock/clamav)](https://galaxy.ansible.com/robertdebock/clamav)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-clamav.svg)](https://github.com/robertdebock/ansible-role-clamav/releases/)|
 
 ## [Example Playbook](#example-playbook)
 
