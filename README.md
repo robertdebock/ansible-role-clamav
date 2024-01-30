@@ -19,6 +19,8 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
 
   roles:
     - role: robertdebock.clamav
+      freshclam_private_mirrors:
+        - https://www.danami.com/hotfix/clamav
 ```
 
 The machine needs to be prepared. In CI this is done using [`molecule/default/prepare.yml`](https://github.com/robertdebock/ansible-role-clamav/blob/master/molecule/default/prepare.yml):
