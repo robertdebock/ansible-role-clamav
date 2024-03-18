@@ -14,8 +14,8 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
 ---
 - name: Converge
   hosts: all
-  become: yes
-  gather_facts: yes
+  become: true
+  gather_facts: true
 
   roles:
     - role: robertdebock.clamav
@@ -29,8 +29,8 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
 ---
 - name: Prepare
   hosts: all
-  become: yes
-  gather_facts: no
+  become: true
+  gather_facts: false
 
   roles:
     - role: robertdebock.bootstrap
@@ -48,8 +48,8 @@ The default values for the variables are set in [`defaults/main.yml`](https://gi
 # defaults file for clamav
 
 # SELinux has to be configured to allow scanning. Set clamav_can_scan_system to
-# either "yes" or "no". Only has effect on systems that support SELinux.
-clamav_can_scan_system: yes
+# either "true" or "false". Only has effect on systems that support SELinux.
+clamav_can_scan_system: true
 
 # Configure any parameter using "regexp" and "line". The parameter "regexp"
 # contains the line that needs to be replaced. The replacement is stored in
