@@ -138,7 +138,7 @@ PrivateMirror {{ mirror }}
 
 # Send the RELOAD command to clamd.
 # Default: no
-NotifyClamd /etc/clamav/clamd.conf
+NotifyClamd {{ clamav_config_dir }}/{{ clamav_config_file }}
 
 # Run command after successful database update.
 # Default: disabled
