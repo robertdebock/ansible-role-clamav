@@ -11,9 +11,17 @@ clamav_can_scan_system: true
 clamav_configuration:
   - line: "Example"
     state: absent
-  - line: "TCPSocket 10025"
+  - line: "LogFile /var/log/clamd.log"
+  - line: "PidFile /var/run/clamav/clamd.pid"
+  - line: "TemporaryDirectory /var/tmp"
+  - line: "FixStaleSocket yes"
+  - line: "TCPSocket 3310"
   - line: "TCPAddr 127.0.0.1"
-  - line: "LogFile /var/log/clamd.scan"
+  - line: "MaxConnectionQueueLength 30"
+  - line: "MaxThreads 50"
+  - line: "ReadTimeout 300"
+  - line: "ExcludePath ^/proc/"
+  - line: "ExcludePath ^/sys/"
 
 # If you have local clamav mirrors (as recommended by ClamAV),
 # you will also need to define a list variable with your mirrors to add,
