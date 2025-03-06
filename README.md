@@ -18,7 +18,7 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
   gather_facts: true
 
   roles:
-    - role: robertdebock.clamav
+    - role: ansible-role-clamav
       freshclam_private_mirrors:
         - https://www.danami.com/hotfix/clamav
 ```
