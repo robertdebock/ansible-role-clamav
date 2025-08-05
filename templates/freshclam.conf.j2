@@ -24,11 +24,11 @@ UpdateLogFile {{ clamav_freshclam_log_dir }}/freshclam.log
 # in bytes just don't use modifiers. If LogFileMaxSize is enabled,
 # log rotation (the LogRotate option) will always be enabled.
 # Default: 1M
-#LogFileMaxSize 2M
+LogFileMaxSize 2M
 
 # Log time with each message.
 # Default: no
-#LogTime yes
+LogTime yes
 
 # Enable verbose logging.
 # Default: no
@@ -36,7 +36,7 @@ UpdateLogFile {{ clamav_freshclam_log_dir }}/freshclam.log
 
 # Use system logger (can work together with UpdateLogFile).
 # Default: no
-#LogSyslog yes
+LogSyslog yes
 
 # Specify the type of syslog messages - please refer to 'man syslog'
 # for facility names.
@@ -54,7 +54,7 @@ PidFile /run/clamav/freshclam.pid
 # By default when started freshclam drops privileges and switches to the
 # "clamav" user. This directive allows you to change the database owner.
 # Default: clamav (may depend on installation options)
-DatabaseOwner {{ clamav_owner }}
+DatabaseOwner {{ clamav_freshclam_owner }}
 
 # Use DNS to verify virus database version. Freshclam uses DNS TXT records
 # to verify database and software versions. With this directive you can change
@@ -67,7 +67,7 @@ DatabaseOwner {{ clamav_owner }}
 # Uncomment the following line and replace XY with your country
 # code. See https://www.iana.org/domains/root/db for the full list.
 # You can use db.XY.ipv6.clamav.net for IPv6 connections.
-DatabaseMirror database.clamav.net
+#DatabaseMirror database.clamav.net
 
 # database.clamav.net is a round-robin record which points to our most
 # reliable mirrors. It's used as a fall back in case db.XY.clamav.net is
@@ -82,7 +82,7 @@ DatabaseMirror database.clamav.net
 # With this option you can control scripted updates. It's highly recommended
 # to keep it enabled.
 # Default: yes
-#ScriptedUpdates yes
+ScriptedUpdates no
 
 # By default freshclam will keep the local databases (.cld) uncompressed to
 # make their handling faster. With this option you can enable the compression;
@@ -138,7 +138,7 @@ PrivateMirror {{ mirror }}
 
 # Send the RELOAD command to clamd.
 # Default: no
-NotifyClamd /etc/clamav/clamd.conf
+NotifyClamd {{ clamav_config_dir }}/{{ clamav_config_file }}
 
 # Run command after successful database update.
 # Default: disabled

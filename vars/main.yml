@@ -24,11 +24,12 @@ _clamav_packages:
     - clamd
   RedHat:
     - clamav
-    - clamav-scanner
     - clamav-scanner-systemd
     - clamav-update
   Rocky:
     - clamav
+    - clamav-data
+    - clamav-devel
     - clamav-update
     - clamd
   Suse:
@@ -43,7 +44,7 @@ _clamav_config_dir:
   RedHat: /etc/clamd.d
   Suse: /etc
 
-clamav_config_dir: "{{ _clamav_config_dir[ansible_os_family] }}"
+clamav_config_dir: "{{ _clamav_config_dir[ansible_distribution] | default(_clamav_config_dir[ansible_os_family]) }}"
 
 _clamav_config_file:
   Alpine: clamd.conf
@@ -53,7 +54,15 @@ _clamav_config_file:
 
 clamav_config_file: "{{ _clamav_config_file[ansible_distribution] | default(_clamav_config_file[ansible_os_family]) }}"
 
-clamav_database_directory: /var/lib/clamav
+_clamav_freshclam_config_dir:
+  default: /etc/clamd.d
+  Alpine: /etc/clamav
+  Debian: /etc/clamav
+  RedHat: /etc/clamd.d
+  Rocky: /etc
+  Suse: /etc
+
+clamav_freshclam_config_dir: "{{ _clamav_freshclam_config_dir[ansible_distribution] | default(_clamav_freshclam_config_dir[ansible_os_family]) }}"
 
 _clamav_freshclam_log_dir:
   Alpine: /var/log
@@ -62,6 +71,8 @@ _clamav_freshclam_log_dir:
   Suse: /var/log
 
 clamav_freshclam_log_dir: "{{ _clamav_freshclam_log_dir[ansible_os_family] }}"
+
+clamav_database_directory: /var/lib/clamav
 
 _clamav_services:
   Alpine:
@@ -93,6 +104,26 @@ _clamav_owner:
 
 clamav_owner: "{{ _clamav_owner[ansible_distribution] | default(_clamav_owner[ansible_os_family]) }}"
 
+_clamav_freshclam_owner:
+  Alpine: clamav
+  CentOS: clamupdate
+  Debian: clamav
+  RedHat: clamscan
+  Rocky: clamupdate
+  Suse: vscan
+
+clamav_freshclam_owner: "{{ _clamav_freshclam_owner[ansible_distribution] | default(_clamav_freshclam_owner[ansible_os_family]) }}"
+
+_clamav_freshclam_group:
+  Alpine: clamav
+  CentOS: clamupdate
+  Debian: clamav
+  RedHat: clamscan
+  Rocky: clamupdate
+  Suse: vscan
+
+clamav_freshclam_group: "{{ _clamav_freshclam_group[ansible_distribution] | default(_clamav_freshclam_group[ansible_os_family]) }}"
+
 _clamav_group:
   Alpine: clamav
   CentOS: clamupdate
@@ -108,6 +139,10 @@ _clamav_requirements:
   default:
     - checkpolicy
     - policycoreutils-python
+    - policycoreutils
+  Rocky:
+    - checkpolicy
+    - policycoreutils-python-utils
     - policycoreutils
   CentOS-8:
     - checkpolicy
