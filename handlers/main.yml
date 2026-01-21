@@ -7,16 +7,21 @@
     state: restarted
   loop: "{{ clamav_services }}"
 
-- name: Ensure logfiles exists
+- name: Ensure logfile exists for /var/log/clamd.scan
   ansible.builtin.file:
-    path: "{{ item }}"
+    path: "/var/log/clamd.scan"
     state: touch
     owner: "{{ clamav_owner }}"
     group: "{{ clamav_group }}"
     mode: "0750"
-  loop:
-    - /var/log/clamd.scan
-    - "{{ clamav_freshclam_log_dir }}/freshclam.log"
+
+- name: Ensure logfile exists for freshclam.log
+  ansible.builtin.file:
+    path: "{{ clamav_freshclam_log_dir }}/freshclam.log"
+    state: touch
+    owner: "{{ clamav_freshclam_owner }}"
+    group: "{{ clamav_freshclam_group }}"
+    mode: "0750"
 
 - name: Stop clamav
   ansible.builtin.service:

@@ -12,7 +12,8 @@
     name: "{{ clamav_packages }}"
     state: present
   notify:
-    - Ensure logfiles exists
+    - Ensure logfile exists for /var/log/clamd.scan
+    - Ensure logfile exists for freshclam.log
     - Stop clamav
     - Update virus definitions
 
@@ -51,7 +52,7 @@
 - name: Place freshclam.conf
   ansible.builtin.template:
     src: freshclam.conf.j2
-    dest: "{{ clamav_config_dir }}/freshclam.conf"
+    dest: "{{ clamav_freshclam_config_dir }}/freshclam.conf"
     mode: "{{ freshclam_mode }}"
 
 - name: Create pid directory
@@ -75,7 +76,7 @@
     mode: "0644"
   loop:
     - main.cvd
-    - daily.cld
+    - daily.cvd
 
 - name: Flush handlers
   ansible.builtin.meta: flush_handlers
