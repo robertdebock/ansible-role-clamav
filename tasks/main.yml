@@ -93,7 +93,7 @@
 
 - name: Check update virus definitions
   ansible.builtin.async_status:
-    jid: "{{ updatevirusdefinitions.ansible_facts['job_id'] }}"
+    jid: "{{ updatevirusdefinitions.ansible_job_id }}"
   register: clamav_job_result
   until:
     - clamav_job_result.finished
