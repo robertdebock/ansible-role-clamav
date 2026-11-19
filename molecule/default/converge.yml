@@ -6,5 +6,3 @@
 
   roles:
     - role: robertdebock.clamav
-      freshclam_private_mirrors:
-        - https://www.danami.com/hotfix/clamav

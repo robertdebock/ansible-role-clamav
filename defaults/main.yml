@@ -15,6 +15,7 @@ clamav_configuration:
   - line: "TCPAddr 127.0.0.1"
   - line: "LogFile /var/log/clamd.scan"
 
+# Without mirrors, freshclam downloads the signatures from the official ClamAV database.
 # If you have local clamav mirrors (as recommended by ClamAV),
 # you will also need to define a list variable with your mirrors to add,
 # as the following example indicates:
