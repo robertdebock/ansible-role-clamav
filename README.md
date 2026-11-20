@@ -19,8 +19,6 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
 
   roles:
     - role: robertdebock.clamav
-      freshclam_private_mirrors:
-        - https://www.danami.com/hotfix/clamav
 ```
 
 The machine needs to be prepared. In CI this is done using [`molecule/default/prepare.yml`](https://github.com/robertdebock/ansible-role-clamav/blob/master/molecule/default/prepare.yml):
@@ -61,6 +59,7 @@ clamav_configuration:
   - line: "TCPAddr 127.0.0.1"
   - line: "LogFile /var/log/clamd.scan"
 
+# Without mirrors, freshclam downloads the signatures from the official ClamAV database.
 # If you have local clamav mirrors (as recommended by ClamAV),
 # you will also need to define a list variable with your mirrors to add,
 # as the following example indicates:
@@ -101,11 +100,7 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 |[Fedora](https://hub.docker.com/r/robertdebock/fedora)|all|
 |[Ubuntu](https://hub.docker.com/r/robertdebock/ubuntu)|all|
 
-The minimum version of Ansible required is 2.12, tests have been done on:
-
-- The previous version.
-- The current version.
-- The development version.
+The minimum version of Ansible (ansible-core) required is 2.20, tests are done with the latest release of ansible-core.
 
 If you find issues, please register them on [GitHub](https://github.com/robertdebock/ansible-role-clamav/issues).
 
